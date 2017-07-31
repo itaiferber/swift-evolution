@@ -48,12 +48,15 @@ open class JSONEncoder {
     // MARK: Customization
 
     /// The formatting of the output JSON data.
-    public enum OutputFormatting {
-        /// Produce JSON compacted by removing whitespace. This is the default formatting.
-        case compact
+    public struct OutputFormatting: OptionSet {
+        let rawValue: UInt
 
         /// Produce human-readable JSON with indented output.
-        case prettyPrinted
+        static let prettyPrinted = OutputFormatting(rawValue: 1 << 0)
+
+        /// Produce JSON with dictionary keys sorted lexicographically.
+        @available(OSX 10.13, iOS 11.0, watchOS 4.0, tvOS 11.0, *)
+        static let sortedKeys    = OutputFormatting(rawValue: 1 << 1)
     }
 
     /// The strategy to use for encoding `Date` values.
@@ -82,13 +85,16 @@ open class JSONEncoder {
 
     /// The strategy to use for encoding `Data` values.
     public enum DataEncodingStrategy {
+        /// Defer to `Data` for choosing an encoding.
+        case deferredToData
+
         /// Encoded the `Data` as a Base64-encoded string. This is the default strategy.
         case base64
 
         /// Encode the `Data` as a custom value encoded by the given closure.
         ///
-        /// If the closure fails to encode a value into the given encoder, the encoder will encode an empty `.default` container in its place.
-        case custom((_ value: Data, _ encoder: Encoder) throws -> Void)
+        /// If the closure fails to encode a value into the given encoder, the encoder will encode an empty automatic container in its place.
+        case custom((Data, Encoder) throws -> Void)
     }
 
     /// The strategy to use for non-JSON-conforming floating-point values (IEEE 754 infinity and NaN).
@@ -100,7 +106,7 @@ open class JSONEncoder {
         case convertToString(positiveInfinity: String, negativeInfinity: String, nan: String)
     }
 
-    /// The output format to produce. Defaults to `.compact`.
+    /// The output format to produce. Defaults to `[]`.
     open var outputFormatting: OutputFormatting
 
     /// The strategy to use in encoding dates. Defaults to `.deferredToDate`.
@@ -154,6 +160,9 @@ open class JSONDecoder {
 
     /// The strategy to use for decoding `Data` values.
     public enum DataDecodingStrategy {
+        /// Defer to `Data` for decoding.
+        case deferredToDate
+
         /// Decode the `Data` from a Base64-encoded string. This is the default strategy.
         case base64
 
@@ -301,40 +310,6 @@ do {
 
 Like with JSON, `PropertyListEncoder` and `PropertyListDecoder` also provide private nested types which conform to `Encoder` and `Decoder` for performing the archival.
 
-### Foundation-Provided Errors
-
-Along with providing the above encoders and decoders, we would like to promote the use of a common set of error codes and messages across all new encoders and decoders. A common vocabulary of expected errors allows end-users to write code agnostic about the specific encoder/decoder implementation they are working with, whether first-party or third-party:
-
-```swift
-extension CocoaError.Code {
-    /// Thrown when a value incompatible with the output format is encoded.
-    public static var coderInvalidValue: CocoaError.Code
-
-    /// Thrown when a value of a given type is requested but the encountered value is of an incompatible type.
-    public static var coderTypeMismatch: CocoaError.Code
-
-    /// Thrown when read data is corrupted or otherwise invalid for the format. This value already exists today.
-    public static var coderReadCorrupt: CocoaError.Code
-
-    /// Thrown when a requested key or value is unexpectedly null or missing. This value already exists today.
-    public static var coderValueNotFound: CocoaError.Code
-}
-
-// These reexpose the values above.
-extension CocoaError {
-    public static var coderInvalidValue: CocoaError.Code
-
-    public static var coderTypeMismatch: CocoaError.Code
-}
-```
-
-The localized description strings associated with the two new error codes are:
-
-* `.coderInvalidValue`: "The data is not valid for encoding in this format."
-* `.coderTypeMismatch`: "The data couldn't be read because it isn't in the correct format." (Precedent from `NSCoderReadCorruptError`.)
-
-All of these errors will include the coding key path that led to the failure in the error's `userInfo` dictionary under `NSCodingPathErrorKey`, along with a non-localized, developer-facing failure reason under `NSDebugDescriptionErrorKey`.
-
 ### `NSKeyedArchiver` & `NSKeyedUnarchiver` Changes
 
 Although our primary objectives for this new API revolve around Swift, we would like to make it easy for current consumers to make the transition to `Codable` where appropriate. As part of this, we would like to bridge compatibility between new `Codable` types (or newly-`Codable`-adopting types) and existing `NSCoding` types.
@@ -344,11 +319,11 @@ To do this, we want to introduce changes to `NSKeyedArchiver` and `NSKeyedUnarch
 ```swift
 // These are provided in the Swift overlay, and included in swift-corelibs-foundation.
 extension NSKeyedArchiver {
-    public func encodeCodable(_ codable: Encodable?, forKey key: String) { ... }
+    public func encodeEncodable<T : Encodable>(_ codable: T, forKey key: String) { ... }
 }
 
 extension NSKeyedUnarchiver {
-    public func decodeCodable<T : Decodable>(_ type: T.Type, forKey key: String) -> T? { ... }
+    public func decodeDecodable<T : Decodable>(_ type: T.Type, forKey key: String) -> T? { ... }
 }
 ```
 
@@ -356,18 +331,12 @@ extension NSKeyedUnarchiver {
 
 The addition of these methods allows the introduction of `Codable` types into existing `NSCoding` structures, allowing for a transition to `Codable` types where appropriate.
 
-#### Refining `encode(_:forKey:)`
-
-Along with these extensions, we would like to refine the import of `-[NSCoder encodeObject:forKey:]`, which is currently imported into Swift as `encode(_: Any?, forKey: String)`. This method currently accepts Objective-C and Swift objects conforming to `NSCoding` (non-conforming objects produce a runtime error), as well as bridgeable Swift types (`Data`, `String`, `Array`, etc.); we would like to extend it to support new Swift `Codable` types, which would otherwise produce a runtime error upon call.
-
-`-[NSCoder encodeObject:forKey:]` will be given a new Swift name of `encodeObject(_:forKey:)`, and we will provide a replacement `encode(_: Any?, forKey: String)` in the overlay which will funnel out to either `encodeCodable(_:forKey:)` or `encodeObject(_:forKey:)` as appropriate. This should maintain source compatibility for end users already calling `encode(_:forKey:)`, as well as behavior compatibility for subclassers of `NSCoder` and `NSKeyedArchiver` who may be providing their own `encode(_:forKey:)`.
-
 #### Semantics of `Codable` Types in Archives
 
 There are a few things to note about including `Codable` values in `NSKeyedArchiver` archives:
 
 * Bridgeable Foundation types will always bridge before encoding. This is to facilitate writing Foundation types in a compatible format from both Objective-C and Swift
-    * On decode, these types will decode either as their Objective-C or Swift version, depending on user need (`decodeObject(forKey:)` will decode as an Objective-C object; `decodeCodable(_:forKey:)` as a Swift value)
+    * On decode, these types will decode either as their Objective-C or Swift version, depending on user need (`decodeObject(forKey:)` will decode as an Objective-C object; `decodeDecodable(_:forKey:)` as a Swift value)
 * User types, which are not bridgeable, do not write out a `$class` and can only be decoded in Swift. In the future, we may add API to allow Swift types to provide an Objective-C class to decode as, effectively allowing for user bridging across archival
 
 ##### Foundation Types Adopting `Codable`
