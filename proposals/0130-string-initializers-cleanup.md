@@ -2,9 +2,9 @@
 
 * Proposal: [SE-0130](0130-string-initializers-cleanup.md)
 * Author: Roman Levenstein
-* Review Manager: [Chris Lattner](http://github.com/lattner)
-* Status: **Implemented (Swift 3)**
-* Decision Notes: [Rationale](https://lists.swift.org/pipermail/swift-evolution-announce/2016-July/000260.html)
+* Review Manager: [Chris Lattner](https://github.com/lattner)
+* Status: **Implemented (Swift 3.0)**
+* Decision Notes: [Rationale](https://forums.swift.org/t/accepted-se-0130-replace-repeating-character-and-unicodescalar-forms-of-string-init/3547)
 
 ## Introduction
 

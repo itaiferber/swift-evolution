@@ -2,14 +2,14 @@
 
 * Proposal: [SE-0118](0118-closure-parameter-names-and-labels.md)
 * Authors: [Dave Abrahams](https://github.com/dabrahams), [Dmitri Gribenko](https://github.com/gribozavr), [Maxim Moiseev](https://github.com/moiseev)
-* Review Manager: [Chris Lattner](http://github.com/lattner)
-* Status: **Implemented (Swift 3)**
-* Decision Notes: [Rationale](https://lists.swift.org/pipermail/swift-evolution-announce/2016-July/000230.html)
+* Review Manager: [Chris Lattner](https://github.com/lattner)
+* Status: **Implemented (Swift 3.0)**
+* Decision Notes: [Rationale](https://forums.swift.org/t/accepted-se-0118-closure-parameter-names-and-labels/3387)
 * Bug: [SR-2072](https://bugs.swift.org/browse/SR-2072)
 
 ## Revision History
 
-- [v1](https://github.com/apple/swift-evolution/blob/ae4a55ab217cc9755004cbf2b29db24e28645d15/proposals/0118-closure-parameter-names-and-labels.md) (as proposed)
+- [v1](https://github.com/swiftlang/swift-evolution/blob/ae4a55ab217cc9755004cbf2b29db24e28645d15/proposals/0118-closure-parameter-names-and-labels.md) (as proposed)
 - v2: fixed spelling of identifiers containing `Utf8` to read `UTF8` per convention.
 
 ## Introduction
@@ -18,10 +18,10 @@ We propose a revision to the names and argument labels of closure
 parameters in standard library APIs.
 
 Swift-evolution thread:
-[Take 2: Stdlib closure argument labels and parameter names](https://lists.swift.org/pipermail/swift-evolution/Week-of-Mon-20160627/022612.html)
+[Take 2: Stdlib closure argument labels and parameter names](https://forums.swift.org/t/take-2-stdlib-closure-argument-labels-and-parameter-names/3180)
 
 Discussion of earlier revision of the proposal:
-[Stdlib closure argument labels and parameter names](https://lists.swift.org/pipermail/swift-evolution/Week-of-Mon-20160620/021470.html)
+[Stdlib closure argument labels and parameter names](https://forums.swift.org/t/stdlib-closure-argument-labels-and-parameter-names/3046)
 
 ## Motivation
 

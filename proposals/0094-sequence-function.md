@@ -1,12 +1,12 @@
 # Add sequence(first:next:) and sequence(state:next:) to the stdlib
 
 * Proposal: [SE-0094](0094-sequence-function.md)
-* Authors: [Kevin Ballard](https://github.com/kballard), [Erica Sadun](http://github.com/erica)
-* Review Manager: [Chris Lattner](http://github.com/lattner)
-* Status: **Implemented (Swift 3)**
-* Decision Notes: [Rationale](https://lists.swift.org/pipermail/swift-evolution-announce/2016-May/000170.html)
+* Authors: [Lily Ballard](https://github.com/lilyball), [Erica Sadun](https://github.com/erica)
+* Review Manager: [Chris Lattner](https://github.com/lattner)
+* Status: **Implemented (Swift 3.0)**
+* Decision Notes: [Rationale](https://forums.swift.org/t/accepted-with-revision-se-0094-add-sequence-initial-next-and-sequence-state-next-to-the-stdlib/2775)
 * Bug: [SR-1622](https://bugs.swift.org/browse/SR-1622)
-* Previous Revision: [1](https://github.com/apple/swift-evolution/blob/7d220a152a681e28761493c7d9781dd867a04cf7/proposals/0094-sequence-function.md)
+* Previous Revision: [1](https://github.com/swiftlang/swift-evolution/blob/7d220a152a681e28761493c7d9781dd867a04cf7/proposals/0094-sequence-function.md)
 * Previous Proposal: [SE-0045](0045-scan-takewhile-dropwhile.md)
 
 ## Introduction
@@ -17,14 +17,13 @@ applications of a closure to an initial value or a mutable state.
 
 Swift-evolution thread: 
 
-[Discussion thread topic for SE-0045](https://lists.swift.org/pipermail/swift-evolution/Week-of-Mon-20160229/011923.html)
+[Discussion thread topic for SE-0045](https://forums.swift.org/t/proposal-add-scan-takewhile-dropwhile-and-iterate-to-the-stdlib/806/6)
 
-
-[Initial Discussion](https://lists.swift.org/pipermail/swift-evolution/Week-of-Mon-20160111/006193.html)
+[Initial Discussion](https://forums.swift.org/t/proposal-add-scan-takewhile-dropwhile-and-iterate-to-the-stdlib/806/15)
 
 ## Motivation
 
-[SE-0045](0045-scan-takewhile-dropwhile.md), originally proposed `iterate(_:apply:)` (see [SE-0045r1](https://github.com/apple/swift-evolution/blob/dd0a39dd051b11e4460accad5af0e74223533e95/proposals/0045-scan-takewhile-dropwhile.md)), a method that
+[SE-0045](0045-scan-takewhile-dropwhile.md), originally proposed `iterate(_:apply:)` (see [SE-0045r1](https://github.com/swiftlang/swift-evolution/blob/dd0a39dd051b11e4460accad5af0e74223533e95/proposals/0045-scan-takewhile-dropwhile.md)), a method that
 was subsequently changed to `unfold(_:applying:)`. The proposal was
 accepted with modifications. The core team rejected `unfold` based on its naming. As its core utility remains unquestionably high, this proposal re-introduces the method with better, more Swift-appropriate naming.
 
@@ -51,8 +50,8 @@ See also:
 
 * [SE-0007 Remove C-style For Loops](0007-remove-c-style-for-loops.md), 
 * [SE-0045](0045-scan-takewhile-dropwhile.md), 
-* [SE-0045r1](https://github.com/apple/swift-evolution/blob/b39d653f7e3d5e982b562664343f26c826652291/proposals/0045-scan-takewhile-dropwhile.md), 
-* [SE-0045r3](https://github.com/apple/swift-evolution/blob/d709546002e1636a10350d14da84eb9e554c3aac/proposals/0045-scan-takewhile-dropwhile.md)
+* [SE-0045r1](https://github.com/swiftlang/swift-evolution/blob/b39d653f7e3d5e982b562664343f26c826652291/proposals/0045-scan-takewhile-dropwhile.md), 
+* [SE-0045r3](https://github.com/swiftlang/swift-evolution/blob/d709546002e1636a10350d14da84eb9e554c3aac/proposals/0045-scan-takewhile-dropwhile.md)
 
 ## Detailed design
 

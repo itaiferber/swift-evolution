@@ -4,9 +4,9 @@
 * Author: [Daniel Dunbar](https://github.com/ddunbar), [Ankit Aggarwal](https://github.com/aciidb0mb3r), [Graydon Hoare](https://github.com/graydon)
 * Review Manager: [Anders Bertelrud](https://github.com/abertelrud)
 * Status: **Implemented (Swift 3.1)**
-* Decision Notes: [Rationale](https://lists.swift.org/pipermail/swift-evolution-announce/2016-December/000302.html)
-* Previous Revision: [1](https://github.com/apple/swift-evolution/blob/91725ee83fa34c81942a634dcdfa9d2441fbd853/proposals/0145-package-manager-version-pinning.md)
-* Previous Discussion: [Email Thread](https://lists.swift.org/pipermail/swift-evolution/Week-of-Mon-20161107/028758.html)
+* Decision Notes: [Rationale](https://forums.swift.org/t/swift-evolution-accepted-se-0145-package-manager-version-pinning-revised/4653)
+* Previous Revision: [1](https://github.com/swiftlang/swift-evolution/blob/91725ee83fa34c81942a634dcdfa9d2441fbd853/proposals/0145-package-manager-version-pinning.md)
+* Previous Discussion: [Email Thread](https://forums.swift.org/t/review-se-0145-package-manager-version-pinning/4405/15)
 
 ## Introduction
 
@@ -208,7 +208,7 @@ update` behavior described above).
 
 If a package author does check the file into source control, the effect will be
 that anyone developing directly on this package will end up sharing the same
-dependency versions (and modifications will be commited as part of the SCM
+dependency versions (and modifications will be committed as part of the SCM
 history).
 
 The automatic pinning behavior is an extension of the behaviors above, and works
@@ -345,7 +345,7 @@ If, in practice, the resulting ecosystem either contains too many packages that
 fail to build, or if a majority of users emit pins files manually regardless of
 default, this policy choice can be revisited.
 
-We considered approachs to "pin by default" that used separate mechanisms when
+We considered approaches to "pin by default" that used separate mechanisms when
 publishing a package to help address the potential for overconstraint, but were
 unable to find a solution we felt was workable.
 
@@ -366,7 +366,7 @@ specification in the manifest (which is the "requirement"). The meaning of pin
 connotes this transient relationship between the pin action and the underlying
 dependency.
 
-In constrast, not only does lock have the wrong connotation, but it also is a
+In contrast, not only does lock have the wrong connotation, but it also is a
 heavily overloaded word which can lead to confusion. For example, if the package
 manager used POSIX file locking to prevent concurrent manipulation of packages
 (a feature we intend to implement), and we also referred to the pinning files as

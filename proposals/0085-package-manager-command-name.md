@@ -1,11 +1,11 @@
 # Package Manager Command Names
 
 * Proposal: [SE-0085](0085-package-manager-command-name.md)
-* Authors: [Rick Ballard](https://github.com/rballard), [Daniel Dunbar](http://github.com/ddunbar)
-* Review Manager: [Daniel Dunbar](http://github.com/ddunbar)
-* Status: **Implemented (Swift 3)**
-* Decision Notes: [Rationale](https://lists.swift.org/pipermail/swift-evolution/Week-of-Mon-20160516/017728.html)
-* Pull Request: [apple/swift-package-manager#364](https://github.com/apple/swift-package-manager/pull/364)
+* Authors: [Rick Ballard](https://github.com/rballard), [Daniel Dunbar](https://github.com/ddunbar)
+* Review Manager: [Daniel Dunbar](https://github.com/ddunbar)
+* Status: **Implemented (Swift 3.0)**
+* Decision Notes: [Rationale](https://forums.swift.org/t/review-se-0085-package-manager-command-names/2530/6)
+* Implementation: [apple/swift-package-manager#364](https://github.com/apple/swift-package-manager/pull/364)
 
 ## Note
 
@@ -20,9 +20,7 @@ and `swift test`, we will introduce a new `swift package` command with multiple
 subcommands. `swift build` and `swift test` will remain as top-level commands due to
 their frequency of use.
 
-[Swift Build Review Thread](https://lists.swift.org/pipermail/swift-build-dev/Week-of-Mon-20160509/000438.html)
-
-[Swift Evolution Review Thread](https://lists.swift.org/pipermail/swift-evolution/Week-of-Mon-20160509/016931.html)
+[Swift Evolution Review Thread](https://forums.swift.org/t/review-se-0085-package-manager-command-names/2530)
 
 ## Motivation
 
@@ -37,7 +35,7 @@ these are not really flags modifying a build, and should be full commands in the
 
 The intent of this proposal is to establish a forward-looking syntax for supporting
 the full range of future package manager functionality in a clean, expressive, and
-clear manner, without using command-line flags (which should be modifiers on a commmand)
+clear manner, without using command-line flags (which should be modifiers on a command)
 to express commands.
 
 ## Proposed solution

@@ -1,133 +1,32 @@
-# Swift Programming Language Evolution
-[![Swift](https://img.shields.io/badge/Swift%204%20stage%202-Open%20to%20requests-brightgreen.svg)](#swift_stage)
+# Swift Evolution
 
+<https://www.swift.org/swift-evolution/>
 
-**Before you initiate a pull request**, please read the process document. Ideas should be thoroughly discussed on the [swift-evolution mailing list](https://swift.org/community/#swift-evolution) first.
+This repository tracks the ongoing evolution of the Swift programming language, standard library, and package manager.
 
-This repository tracks the ongoing evolution of Swift. It contains:
+## Goals and Release Notes
 
-* Goals for upcoming Swift releases (this document).
-* The [Swift evolution review status][proposal-status] tracking proposals to change Swift.
-* The [Swift evolution process](process.md) that governs the evolution of Swift.
-* [Commonly Rejected Changes](commonly_proposed.md), proposals which have been denied in the past.
+* [Swift Language focus areas heading into 2025](https://forums.swift.org/t/swift-language-focus-areas-heading-into-2025/76611)
+* [CHANGELOG](https://github.com/apple/swift/blob/main/CHANGELOG.md)
 
-This document describes goals for the Swift language on a per-release
-basis, usually listing minor releases adding to the currently shipping
-version and one major release out.  Each release will have many
-smaller features or changes independent of these larger goals, and not
-all goals are reached for each release.
-
-Goals for past versions are included at the bottom of the document for
-historical purposes, but are not necessarily indicative of the
-features shipped. The release notes for each shipped version are the
-definitive list of notable changes in each release.
-<a name="swift_stage"></a>
-## Development major version:  Swift 4.0
-
-Expected release date: Late 2017
-
-The Swift 4 release is designed around two primary goals: to provide
-source stability for Swift 3 code and to provide ABI stability for the
-Swift standard library. To that end, the Swift 4 release will be
-divided into two stages.
-
-Stage 1 focused on the essentials required for source and ABI
-stability. Features that don't fundamentally change the ABI of
-existing language features or imply an ABI-breaking change to the
-standard library will not be considered in this stage. 
-
-Stage 2 opened in mid-February and extends until April 1, 2017, after
-which proposals will be held for a later version of Swift.
-
-The high-priority features supporting Stage 1's source and ABI
-stability goals are:
-
-* Source stability features: the Swift language will need [some
-  accommodations](https://github.com/apple/swift-evolution/blob/master/proposals/0141-available-by-swift-version.md)
-  to support code bases that target different language versions, to
-  help Swift deliver on its source-compatibility goals while still
-  enabling rapid progress.
-
-* Resilience: resilience provides a way for public APIs to evolve over
-  time, while maintaining a stable ABI. For example, resilience
-  eliminates the [fragile base class
-  problem](https://en.wikipedia.org/wiki/Fragile_base_class) that
-  occurs in some object-oriented languages (e.g., C++) by describing
-  the types of API changes that can be made without breaking ABI
-  (e.g., "a new stored property or method can be added to a class").
-
-* Stabilizing the ABI: There are a ton of small details that need to
-  be audited and improved in the code generation model, including
-  interaction with the Swift runtime. While not specifically
-  user-facing, the decisions here affect performance and (in some rare
-  cases) the future evolution of Swift.
-
-* Generics improvements needed by the standard library: the standard
-  library has a number of workarounds for language deficiencies, many
-  of which manifest as extraneous underscored protocols and
-  workarounds. If the underlying language deficiencies remain, they
-  become a permanent part of the stable ABI. [Conditional
-  conformances](https://github.com/apple/swift-evolution/blob/master/proposals/0143-conditional-conformances.md),
-  [recursive protocol
-  requirements](https://github.com/apple/swift/blob/master/docs/GenericsManifesto.md#recursive-protocol-constraints-),
-  and [where clauses for associated
-  types](https://github.com/apple/swift-evolution/blob/master/proposals/0142-associated-types-constraints.md)
-  are known to be in this category, but it's plausible that other
-  features will be in scope if they would be used in the standard
-  library.
-
-* String re-evaluation: String is one of the most important
-  fundamental types in the language. Swift 4 seeks to make strings more
-  powerful and easier-to-use, while retaining Unicode correctness by
-  default.
-
-* Memory ownership model: an (opt-in) Cyclone/Rust-inspired memory
-  ownership model is highly desired by systems programmers and for
-  other high-performance applications that want predictable and
-  deterministic performance. This feature will fundamentally shape the
-  ABI, from low-level language concerns such as "inout" and low-level
-  "addressors" to its impact on the standard library. While a full
-  memory ownership model is likely too large for Swift 4 stage 1, we
-  need a comprehensive design to understand how it will change the
-  ABI.
-
-Swift 4 stage 2 builds on the goals of stage 1. It differs in that
-stage 2 proposals may include some additive changes and changes to
-existing features that don't affect the ABI. There are a few focus
-areas for Swift 4 stage 2:
-
-* Stage 1 proposals: Any proposal that would have been eligible for
-  stage 1 is a priority for stage 2.
-
-* Source-breaking changes: The Swift 4 compiler will provide a
-  source-compatibility mode to allow existing Swift 3 sources to
-  compile, but source-breaking changes can manifest in "Swift 4"
-  mode. That said, changes to fundamental parts of Swift's syntax or
-  standard library APIs that breaks source code are better
-  front-loaded into Swift 4 than delayed until later
-  releases. Relative to Swift 3, the bar for such changes is
-  significantly higher:
-
-  * The existing syntax/API being changed must be actively harmful.
-  * The new syntax/API must clearly be better and not conflict with existing Swift syntax.
-  * There must be a reasonably automatable migration path for existing code.
-
-* Improvements to existing Standard Library facilities: Additive
-  changes that improve existing standard library facilities can be
-  considered. With standard library additions in particular, proposals
-  that provide corresponding implementations are preferred. Potential
-  focus areas for improvement include collections (e.g., new
-  collection algorithms) and improvements to the ergonomics of
-  `Dictionary`.
-
-* Foundation improvements: We anticipate proposing some targeted
-  improvements to Foundation API to continue the goal of making the
-  Cocoa SDK work seamlessly in Swift. Details on the specific goals
-  will be provided as we get started on Swift 4 stage 2.
-
-## Previous releases
-
-* [Swift 3.0](releases/swift-3_0.md) - Released on September 13, 2016
-* [Swift 2.2](releases/swift-2_2.md) - Released on March 21, 2016
-
-[proposal-status]: https://apple.github.io/swift-evolution/
+| Version   | Announced                                                                | Released                                                     |
+| :-------- | :----------------------------------------------------------------------- | :----------------------------------------------------------- |
+| Swift 6.1 | [2024-10-17](https://forums.swift.org/t/swift-6-1-release-process/75442) |
+| Swift 6.0 | [2024-02-22](https://forums.swift.org/t/swift-6-0-release-process/70220) | [2024-09-17](https://www.swift.org/blog/announcing-swift-6/) |
+| Swift 5.10 | [2023-08-23](https://forums.swift.org/t/swift-5-10-release-process/66911) | [2024-03-05](https://www.swift.org/blog/swift-5.10-released/) |
+| Swift 5.9 | [2023-03-06](https://forums.swift.org/t/swift-5-9-release-process/63557) | [2023-09-18](https://www.swift.org/blog/swift-5.9-released/) |
+| Swift 5.8 | [2022-11-19](https://forums.swift.org/t/swift-5-8-release-process/61540) | [2023-03-30](https://www.swift.org/blog/swift-5.8-released/) |
+| Swift 5.7 | [2022-03-29](https://forums.swift.org/t/swift-5-7-release-process/56316) | [2022-09-12](https://www.swift.org/blog/swift-5.7-released/) |
+| Swift 5.6 | [2021-11-10](https://forums.swift.org/t/swift-5-6-release-process/53412) | [2022-03-14](https://www.swift.org/blog/swift-5.6-released/) |
+| Swift 5.5 | [2021-03-12](https://forums.swift.org/t/swift-5-5-release-process/45644) | [2021-09-20](https://www.swift.org/blog/swift-5.5-released/) |
+| Swift 5.4 | [2020-11-11](https://forums.swift.org/t/swift-5-4-release-process/41936) | [2021-04-26](https://www.swift.org/blog/swift-5.4-released/) |
+| Swift 5.3 | [2020-03-25](https://www.swift.org/blog/5.3-release-process/)            | [2020-09-16](https://www.swift.org/blog/swift-5.3-released/) |
+| Swift 5.2 | [2019-09-24](https://www.swift.org/blog/5.2-release-process/)            | [2020-03-24](https://www.swift.org/blog/swift-5.2-released/) |
+| Swift 5.1 | [2019-02-18](https://www.swift.org/blog/5.1-release-process/)            | [2019-09-20](https://www.swift.org/blog/swift-5.1-released/) |
+| Swift 5.0 | [2018-09-25](https://www.swift.org/blog/5.0-release-process/)            | [2019-03-25](https://www.swift.org/blog/swift-5-released/)   |
+| Swift 4.2 | [2018-02-28](https://www.swift.org/blog/4.2-release-process/)            | [2018-09-17](https://www.swift.org/blog/swift-4.2-released/) |
+| Swift 4.1 | [2017-10-17](https://www.swift.org/blog/swift-4.1-release-process/)      | [2018-03-29](https://www.swift.org/blog/swift-4.1-released/) |
+| Swift 4.0 | [2017-02-16](https://www.swift.org/blog/swift-4.0-release-process/)      | [2017-09-19](https://www.swift.org/blog/swift-4.0-released/) |
+| Swift 3.1 | [2016-12-09](https://www.swift.org/blog/swift-3.1-release-process/)      | [2017-03-27](https://www.swift.org/blog/swift-3.1-released/) |
+| Swift 3.0 | [2016-05-06](https://www.swift.org/blog/swift-3.0-release-process/)      | [2016-09-13](https://www.swift.org/blog/swift-3.0-released/) |
+| Swift 2.2 | [2016-01-05](https://www.swift.org/blog/swift-2.2-release-process/)      | [2016-03-21](https://www.swift.org/blog/swift-2.2-released/) |

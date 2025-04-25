@@ -3,8 +3,8 @@
 * Proposal: [SE-0157](0157-recursive-protocol-constraints.md)
 * Authors: [Douglas Gregor](https://github.com/DougGregor), [Erica Sadun](https://github.com/erica), [Austin Zheng](https://github.com/austinzheng)
 * Review Manager: [John McCall](https://github.com/rjmccall)
-* Status: **Accepted**
-* Decision Notes: [Rationale](https://lists.swift.org/pipermail/swift-evolution/Week-of-Mon-20170320/034266.html)
+* Status: **Implemented (Swift 4.1)**
+* Decision Notes: [Rationale](https://forums.swift.org/t/se-0157-support-recursive-constraints-on-associated-types/5494)
 * Bug: [SR-1445](https://bugs.swift.org/browse/SR-1445)
 
 ## Introduction
@@ -12,7 +12,7 @@
 This proposal lifts restrictions on associated types in protocols. Their constraints will be allowed to reference any
 protocol, including protocols that depend on the enclosing one (recursive constraints).
 
-Further reading: [swift-evolution thread](https://lists.swift.org/pipermail/swift-evolution/Week-of-Mon-20161107/028805.html), _[Completing Generics](https://github.com/apple/swift/blob/master/docs/GenericsManifesto.md#recursive-protocol-constraints-)_
+Further reading: [swift-evolution thread](https://forums.swift.org/t/pitch-plea-recursive-protocol-constraints/4507), _[Completing Generics](https://github.com/apple/swift/blob/master/docs/GenericsManifesto.md#recursive-protocol-constraints-)_
 
 ## Motivation
 
@@ -93,7 +93,7 @@ Implementation details regarding the compiler changes necessary to implement the
 found in [this document](https://gist.github.com/DougGregor/e7c4e7bb4465d6f5fa2b59be72dbdba6).
 
 The second part of the solution involves updating the standard library to take advantage of the removal of this
-restriction. Such changes are made with [SE-0142](https://github.com/apple/swift-evolution/blob/master/proposals/0142-associated-types-constraints.md)
+restriction. Such changes are made with [SE-0142](https://github.com/swiftlang/swift-evolution/blob/master/proposals/0142-associated-types-constraints.md)
 in mind, and incorporate both recursive constraints and `where` clauses. The changes necessary for this are described
 in the _Detailed Design_ section below.
 

@@ -2,10 +2,10 @@
 
 * Proposal: [SE-0088](0088-libdispatch-for-swift3.md)
 * Author: [Matt Wright](https://github.com/mwwa)
-* Review Manager: [Chris Lattner](http://github.com/lattner)
-* Status: **Implemented (Swift 3)**
-* Decision Notes: [Rationale](https://lists.swift.org/pipermail/swift-evolution-announce/2016-May/000163.html)
-* Previous Revision: [1](https://github.com/apple/swift-evolution/blob/ef372026d5f7e46848eb2a64f292328028b667b9/proposals/0088-libdispatch-for-swift3.md)
+* Review Manager: [Chris Lattner](https://github.com/lattner)
+* Status: **Implemented (Swift 3.0)**
+* Decision Notes: [Rationale](https://forums.swift.org/t/accepted-with-revision-se-0088-modernize-libdispatch-for-swift-3-naming-conventions/2697)
+* Previous Revision: [1](https://github.com/swiftlang/swift-evolution/blob/ef372026d5f7e46848eb2a64f292328028b667b9/proposals/0088-libdispatch-for-swift3.md)
 
 ## Introduction
 
@@ -13,7 +13,7 @@ The existing libdispatch module imports the C API almost verbatim. To move towar
 
 This discussion focuses on the transformation of the existing libdispatch API.
 
-[Review thread](https://lists.swift.org/pipermail/swift-evolution/Week-of-Mon-20160509/017170.html)
+[Review thread](https://forums.swift.org/t/review-se-0088-modernize-libdispatch-for-swift-3-naming-conventions/2552)
 
 ## Motivation
 
@@ -144,7 +144,7 @@ queue.setSpecific(key: akey, value: 42)
 
 #### Work Items
 
-The existing ```dispatch_block_*``` API group exposes functionality that produces ```dispatch_block_t``` blocks that are wrapped with additional metadata. That behaviour in C has multiple cases where this API group can be accidentally misused because the C types are ambiguously overloaded. This proposal will introduce a new explict class to cover this functionality, ```DispatchWorkItem``` that provides more explicit, safer typing.
+The existing ```dispatch_block_*``` API group exposes functionality that produces ```dispatch_block_t``` blocks that are wrapped with additional metadata. That behaviour in C has multiple cases where this API group can be accidentally misused because the C types are ambiguously overloaded. This proposal will introduce a new explicit class to cover this functionality, ```DispatchWorkItem``` that provides more explicit, safer typing.
 
 ```swift
 class DispatchWorkItem {
@@ -259,7 +259,7 @@ struct DispatchData : RandomAccessCollection, _ObjectiveCBridgeable {
 }
 ```
 
-This proposal will introduce new accessor methods to access the bytes in a Data object. Along with becoming iteratable, several methods will be introduced that replace the ```dispatch_data_create_map``` approach used in C:
+This proposal will introduce new accessor methods to access the bytes in a Data object. Along with becoming iterable, several methods will be introduced that replace the ```dispatch_data_create_map``` approach used in C:
 
 ```swift
 struct DispatchData : RandomAccessCollection, _ObjectiveCBridgeable {

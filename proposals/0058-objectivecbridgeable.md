@@ -3,15 +3,12 @@
 * Proposal: [SE-0058](0058-objectivecbridgeable.md)
 * Authors: [Russ Bishop](https://github.com/russbishop), [Doug Gregor](https://github.com/DougGregor)
 * Review Manager: [Joe Groff](https://github.com/jckarter)
-* Status: **Deferred**
-* Decision Notes: [Rationale](https://lists.swift.org/pipermail/swift-evolution-announce/2016-April/000095.html)
+* Status: **Rejected**
+* Review: ([pitch](https://forums.swift.org/t/idea-objectivecbridgeable/1559)) ([review](https://forums.swift.org/t/review-se-0058-allow-swift-types-to-provide-custom-objective-c-representations/2054)) ([deferral](https://forums.swift.org/t/deferred-se-0058-allow-swift-types-to-provide-custom-objective-c-representations/2167)) ([rejection](https://forums.swift.org/t/returning-or-rejecting-all-the-deferred-evolution-proposals/60724))
 
 ## Introduction
 
 Provide an `ObjectiveCBridgeable` protocol that allows a Swift type to control how it is represented in Objective-C by converting into and back from an entirely separate `@objc` type. This frees library authors to create truly native Swift APIs while still supporting Objective-C.
-
-Swift-evolution thread: [\[Idea\] ObjectiveCBridgeable](https://lists.swift.org/pipermail/swift-evolution/Week-of-Mon-20160222/011032.html)
-
 
 ## Motivation
 
@@ -80,7 +77,7 @@ public protocol ObjectiveCBridgeable {
     /// Objective-C thunk or when calling Objective-C code.
     ///
     /// - note: This initializer should eagerly perform the
-    /// conversion without defering any work for later,
+    /// conversion without deferring any work for later,
     /// returning `nil` if the conversion fails.
     init?(bridgedFromObjectiveC: ObjectiveCType)
 
@@ -147,7 +144,7 @@ The compiler generates automatic thunks only when there is no ambiguity, while e
     3. Bridged collection types will still observe the protocol conformance if cast to a Swift type (eg: `NSArray as? [Int]` will call the `ObjectiveCBridgeable` implementation on `Array`, which itself will call the implementation on `Int` for the elements)
 2. A Swift type may bridge to an Objective-C base class then provide different subclass instances at runtime, but no other Swift type may bridge to that base class or any of its subclasses.
     1. The compiler should emit a diagnostic when it detects two Swift types attempting to bridge to the same `ObjectiveCType`.
-3. An exception to these rules exists for trivially convertable built-in types like `NSInteger` &lt;--&gt; `Int` when specified outside of a bridged collection type. In those cases the compiler will continue the existing behavior, bypassing the `ObjectiveCBridgeable` protocol. The effect is that types like `Int` will not bridge to `NSNumber` unless contained inside a collection type (see `BuiltInBridgeable below`).
+3. An exception to these rules exists for trivially convertible built-in types like `NSInteger` &lt;--&gt; `Int` when specified outside of a bridged collection type. In those cases the compiler will continue the existing behavior, bypassing the `ObjectiveCBridgeable` protocol. The effect is that types like `Int` will not bridge to `NSNumber` unless contained inside a collection type (see `BuiltInBridgeable below`).
 
 ### Resiliance
 

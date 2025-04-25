@@ -2,10 +2,9 @@
 
 * Proposal: [SE-0090](0090-remove-dot-self.md)
 * Authors: [Joe Groff](https://github.com/jckarter), [Tanner Nelson](https://github.com/tannernelson)
-* Review Manager: [Chris Lattner](http://github.com/lattner)
-* Status: **Deferred**
-* Decision Notes: [Rationale](https://lists.swift.org/pipermail/swift-evolution-announce/2016-May/000174.html)
-* Revision: 2
+* Review Manager: [Chris Lattner](https://github.com/lattner)
+* Status: **Returned for revision**
+* Review: ([pitch](https://forums.swift.org/t/making-self-after-type-optional/1737)) ([review](https://forums.swift.org/t/review-se-0090-remove-self-and-freely-allow-type-references-in-expressions/2664)) ([deferral](https://forums.swift.org/t/deferred-se-0090-remove-self-and-freely-allow-type-references-in-expressions/2781)) ([return for revision](https://forums.swift.org/t/returning-or-rejecting-all-the-deferred-evolution-proposals/60724))
 
 ## Introduction
 
@@ -14,8 +13,6 @@ a constructor call `T(x)` or member access `T.x`. To get the metatype object
 for `T`, one must refer to the special member `T.self`. I propose allowing
 type references to appear freely in expressions and removing the `.self` member
 from the language.
-
-Swift-evolution thread: [Making `.self` After `Type` Optional](https://lists.swift.org/pipermail/swift-evolution/Week-of-Mon-20160307/012239.html)
 
 ## Motivation
 

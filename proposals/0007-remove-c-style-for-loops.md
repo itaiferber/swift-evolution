@@ -3,8 +3,8 @@
 * Proposal: [SE-0007](0007-remove-c-style-for-loops.md)
 * Author: [Erica Sadun](https://github.com/erica)
 * Review Manager: [Doug Gregor](https://github.com/DougGregor)
-* Status: **Implemented (Swift 3)**
-* Decision Notes: [Rationale](https://lists.swift.org/pipermail/swift-evolution-announce/2015-December/000001.html)
+* Status: **Implemented (Swift 3.0)**
+* Decision Notes: [Rationale](https://forums.swift.org/t/accepted-se-0007-remove-c-style-for-loops-with-conditions-and-incrementers/512)
 * Bugs: [SR-226](https://bugs.swift.org/browse/SR-226), [SR-227](https://bugs.swift.org/browse/SR-227)
 
 ## Introduction
@@ -19,7 +19,7 @@ language.
 
 The value of this construct is limited and I believe its removal should be seriously considered.
 
-This proposal was discussed on the Swift Evolution list in the [C-style For Loops](https://lists.swift.org/pipermail/swift-evolution/2015-December/000053.html) thread and reviewed in the [\[Review\] Remove C-style for-loops with conditions	and incrementers](https://lists.swift.org/pipermail/swift-evolution/Week-of-Mon-20151207/000913.html) thread.
+This proposal was discussed on the Swift Evolution list in the [C-style For Loops](https://forums.swift.org/t/c-style-for-loops/31) thread and reviewed in the [\[Review\] Remove C-style for-loops with conditions	and incrementers](https://forums.swift.org/t/review-remove-c-style-for-loops-with-conditions-and-incrementers/255) thread.
 
 ## Advantages of For Loops
 
@@ -101,6 +101,6 @@ for(var i=0 ; i < array.count ;i++){
 * "For what it's worth we don't have a single C style for loop in the Lyft codebase." -- Keith Smiley, keithbsmiley@gmail.com
 * "Just checked; ditto Khan Academy." -- Andy Matsuchak, andy@andymatuschak.org
 * "We’ve developed a number of Swift apps for various clients over the past year and have not needed C style for loops either." -- Eric Chamberlain, eric.chamberlain@arctouch.com
-* "Every time I've tried to use a C-style for loop, I've ended up switching to a while loop because my iteration variable ended up having the wrong type (e.g. having an optional type when the value must be non-optional for the body to execute). The Postmates codebase contains no instances of C-style for loops in Swift." -- Kevin Ballard, kevin@sb.org
+* "Every time I've tried to use a C-style for loop, I've ended up switching to a while loop because my iteration variable ended up having the wrong type (e.g. having an optional type when the value must be non-optional for the body to execute). The Postmates codebase contains no instances of C-style for loops in Swift." -- Lily Ballard, lily@sb.org
 * "I found a couple of cases of them in my codebase, but they were trivially transformed into “proper” Swift-style for loops that look better anyway. If it were a vote, I’d vote for eliminating C-style." -- Sean Heber, sean@fifthace.com
 

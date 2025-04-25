@@ -3,10 +3,9 @@
 * Proposal: [SE-0167](0167-swift-encoders.md)
 * Authors: [Itai Ferber](https://github.com/itaiferber), [Michael LeHew](https://github.com/mlehew), [Tony Parker](https://github.com/parkera)
 * Review Manager: [Doug Gregor](https://github.com/DougGregor)
-* Status: **Accepted**
-* Decision Notes: [Rationale](https://lists.swift.org/pipermail/swift-evolution-announce/2017-April/000368.html)
-* Associated PRs:
-  * [#9005](https://github.com/apple/swift/pull/9005)
+* Status: **Implemented (Swift 4.0)**
+* Decision Notes: [Rationale](https://forums.swift.org/t/accepted-se-0167-swift-encoders/5781)
+* Implementation: [apple/swift#9005](https://github.com/apple/swift/pull/9005)
 
 ## Introduction
 
@@ -41,7 +40,7 @@ open class JSONEncoder {
     ///
     /// - parameter value: The value to encode.
     /// - returns: A new `Data` value containing the encoded JSON data.
-    /// - throws: `CocoaError.coderInvalidValue` if a non-comforming floating-point value is encountered during archiving, and the encoding strategy is `.throw`.
+    /// - throws: `CocoaError.coderInvalidValue` if a non-conforming floating-point value is encountered during archiving, and the encoding strategy is `.throw`.
     /// - throws: An error if any value throws an error during encoding.
     open func encode<T : Encodable>(_ value: T) throws -> Data
 

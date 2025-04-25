@@ -3,16 +3,16 @@
 * Proposal: [SE-0182](0182-newline-escape-in-strings.md)
 * Authors: [John Holdsworth](https://github.com/johnno1962), [David Hart](https://github.com/hartbit), [Adrian Zubarev](https://github.com/DevAndArtist)
 * Review Manager: [Chris Lattner](https://github.com/lattner)
-* Status: **Accepted with Revision**
-* Decision Notes: [Rationale](https://lists.swift.org/pipermail/swift-evolution-announce/2017-July/000393.html)
-
+* Status: **Implemented (Swift 4.0)**
+* Implementation: [apple/swift#11080](https://github.com/apple/swift/pull/11080)
+* Decision Notes: [Rationale](https://forums.swift.org/t/accepted-se-0182-string-newline-escaping/6355)
 * Previous Proposal: [SE-0168](0168-multi-line-string-literals.md)
 
 ## Introduction
 
 This proposal is a refinement of [SE-0168](0168-multi-line-string-literals.md) which introduces the ability to escape newlines in single and multi-line strings to improve readability and maintenance of source material containing excessively long lines.
 
-Swift-evolution thread: [Discussion thread](https://lists.swift.org/pipermail/swift-evolution/Week-of-Mon-20170417/035923.html)
+Swift-evolution thread: [Discussion thread](https://forums.swift.org/t/accepted-se-0168-multi-line-string-literals/5715)
 
 ## Motivation
 

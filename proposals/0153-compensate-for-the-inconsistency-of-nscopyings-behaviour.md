@@ -1,18 +1,13 @@
 # Compensate for the inconsistency of `@NSCopying`'s behaviour
 
 * Proposal: [SE-0153](0153-compensate-for-the-inconsistency-of-nscopyings-behaviour.md)
-* Authors: [Torin Kwok](https://github.com/TorinKwok)
+* Author: [Torin Kwok](https://github.com/TorinKwok)
 * Review Manager: [Doug Gregor](https://github.com/DougGregor)
-* Status: **Accepted**
-* Decision Notes: [Rationale](https://lists.swift.org/pipermail/swift-evolution/Week-of-Mon-20170227/033357.html)
+* Status: **Rejected**
+* Decision Notes: [Rationale](https://forums.swift.org/t/accepted-se-0153-compensate-for-the-inconsistency-of-nscopying-s-behaviour/5341), [Additional Commentary](https://forums.swift.org/t/addressing-unimplemented-evolution-proposals/40322)
 * Bug: [SR-4538](https://bugs.swift.org/browse/SR-4538)
 
-<!--*During the review process, add the following fields as needed:*
-
-* Decision Notes: [Rationale](https://lists.swift.org/pipermail/swift-evolution/), [Additional Commentary](https://lists.swift.org/pipermail/swift-evolution/)
-* Bugs: [SR-NNNN](https://bugs.swift.org/browse/SR-NNNN), [SR-MMMM](https://bugs.swift.org/browse/SR-MMMM)
-* Previous Revision: [1](https://github.com/apple/swift-evolution/blob/...commit-ID.../proposals/NNNN-filename.md)
-* Previous Proposal: [SE-XXXX](XXXX-filename.md)-->
+**Note**: This proposal was initially accepted without an implementation on 2017-03-01, and has not been implemented since. The Core Team has decided to retroactively reject the proposal.
 
 ## Introduction
 
@@ -26,8 +21,7 @@ This proposal is intent on proposing several solutions to this inconsistency.
 
 ## Swift-evolution thread
 
-- [@NSCopying currently does not affect initializers (from *The Week Of Monday 23 January 2017 Archive*)](https://lists.swift.org/pipermail/swift-evolution/Week-of-Mon-20170123/031049.html)
-- [@NSCopying currently does not affect initializers (from *The Week Of Monday 30 January 2017 Archive*)](https://lists.swift.org/pipermail/swift-evolution/Week-of-Mon-20170130/031162.html)
+[@NSCopying currently does not affect initializers](https://forums.swift.org/t/nscopying-currently-does-not-affect-initializers/5019)
 
 ## Motivation
 
@@ -141,7 +135,7 @@ print( lab.employee )	// Prints "Isaac Newton, Astronomer"
 
 Setting the job of `isaacNewton` affects the job stored in `lab.employee`. That's an unexpected behavior as we have declared `employee` property as `@NSCopying`. Obviously, `@NSCopying` semantic became effectless implicitly in the initializer of `Department` class.
 
-For the moment, if we indeed require copy we have to invoke `copy()` method explictly on instances that want to be copied to make sure that classes' properties are able to store deeply-copied results during the initialization:
+For the moment, if we indeed require copy we have to invoke `copy()` method explicitly on instances that want to be copied to make sure that classes' properties are able to store deeply-copied results during the initialization:
 
 ``` swift
 init( employee candidate: Person ) {
@@ -183,7 +177,7 @@ or:
   }
 ```
 
-Speaking of Swift, however, there is no stuff like `->` operator to access ivar directly. As a result, with property marked with `@NSCopying` attribute, developers who are new to this language, expecially those who have had experience of writing Objective-C, are likely to automatically suppose it acts normally when they're writing down code like `self.employee = candidate` in initializer. That's bug-prone.
+Speaking of Swift, however, there is no stuff like `->` operator to access ivar directly. As a result, with property marked with `@NSCopying` attribute, developers who are new to this language, especially those who have had experience of writing Objective-C, are likely to automatically suppose it acts normally when they're writing down code like `self.employee = candidate` in initializer. That's bug-prone.
 
 ## Proposed solution
 

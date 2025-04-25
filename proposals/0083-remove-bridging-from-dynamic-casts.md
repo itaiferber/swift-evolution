@@ -2,9 +2,9 @@
 
 * Proposal: [SE-0083](0083-remove-bridging-from-dynamic-casts.md)
 * Author: [Joe Groff](https://github.com/jckarter)
-* Review Manager: [Chris Lattner](http://github.com/lattner)
-* Status: **Deferred**
-* Decision Notes: [Rationale](https://lists.swift.org/pipermail/swift-evolution-announce/2016-May/000173.html)
+* Review Manager: [Chris Lattner](https://github.com/lattner)
+* Status: **Rejected**
+* Review: ([pitch](https://forums.swift.org/t/pitch-reducing-the-bridging-magic-in-dynamic-casts/2398)) ([review](https://forums.swift.org/t/review-se-0083-remove-bridging-conversion-behavior-from-dynamic-casts/2544)) ([deferral](https://forums.swift.org/t/deferred-to-later-in-swift-3-se-0083-remove-bridging-conversion-behavior-from-dynamic-casts/2780)) ([rejection](https://forums.swift.org/t/returning-or-rejecting-all-the-deferred-evolution-proposals/60724))
 
 ## Introduction
 
@@ -15,8 +15,6 @@ removed to make dynamic cast behavior simpler, more efficient, and
 easier to understand. To replace this functionality, initializers should be
 added to bridged types, providing an interface for these conversions that's
 more consistent with the conventions of the standard library.
-
-Swift-evolution thread: [Reducing the bridging magic in dynamic casts](https://lists.swift.org/pipermail/swift-evolution/Week-of-Mon-20160425/016171.html)
 
 ## Motivation
 

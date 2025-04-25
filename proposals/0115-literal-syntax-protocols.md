@@ -2,18 +2,18 @@
 
 * Proposal: [SE-0115](0115-literal-syntax-protocols.md)
 * Author: [Matthew Johnson](https://github.com/anandabits)
-* Review Manager: [Chris Lattner](http://github.com/lattner)
-* Status: **Implemented (Swift 3)**
-* Decision Notes: [Rationale](https://lists.swift.org/pipermail/swift-evolution-announce/2016-July/000220.html)
+* Review Manager: [Chris Lattner](https://github.com/lattner)
+* Status: **Implemented (Swift 3.0)**
+* Decision Notes: [Rationale](https://forums.swift.org/t/accepted-se-0115-rename-literal-syntax-protocols/3358)
 * Bug: [SR-2054](https://bugs.swift.org/browse/SR-2054)
 
 ## Introduction
 
 This proposal renames the `*LiteralConvertible` protocols to `ExpressibleBy*Literal`.  
 
-Swift-evolution thread: [Literal Syntax Protocols](https://lists.swift.org/pipermail/swift-evolution/Week-of-Mon-20160620/021865.html)
+Swift-evolution thread: [Literal Syntax Protocols](https://forums.swift.org/t/proposal-draft-literal-syntax-protocols/3109)
 
-An earlier thread that resulted in this proposal: [Revisiting SE-0041 Names](https://lists.swift.org/pipermail/swift-evolution/Week-of-Mon-20160620/021714.html)
+An earlier thread that resulted in this proposal: [Revisiting SE-0041 Names](https://forums.swift.org/t/revisiting-se-0041-names/3084)
 
 ## Motivation
 
@@ -29,7 +29,7 @@ Further, the standard library team has observed:
 > (e.g., Int or String), and as far as the user at the call site is concerned, 
 > there is no visible conversion (even if one is happening behind the scenes).
 
-[An earlier proposal](https://github.com/apple/swift-evolution/blob/master/proposals/0041-conversion-protocol-conventions.md) was intended to address the first problem by introducing strong naming conventions for three kinds of conversion protocols (*from*, *to*, and *bidirectional*).  The review highlighted the difficulty in establishing conventions that everyone is happy with.  This proposal takes a different approach to solving the problem that originally inspired that proposal while also solving the awkwardness of the current names described by the standard library team.
+[An earlier proposal](https://github.com/swiftlang/swift-evolution/blob/master/proposals/0041-conversion-protocol-conventions.md) was intended to address the first problem by introducing strong naming conventions for three kinds of conversion protocols (*from*, *to*, and *bidirectional*).  The review highlighted the difficulty in establishing conventions that everyone is happy with.  This proposal takes a different approach to solving the problem that originally inspired that proposal while also solving the awkwardness of the current names described by the standard library team.
 
 ## Proposed solution
 
@@ -79,7 +79,7 @@ All code that references any of the `*LiteralConvertible` protocols will need to
 
 Discussion of the pros and cons of the proposed and alternative naming schemes is encouraged.  The core team should feel free to choose names they deem best suited for Swift after community discussion and review if they decide to accept this proposal.
 
-The discussion thread for this proposal includes abundant bike shedding on the names.  This section includes selected examples to highlight different directions that have been discussed.  Reviewers are encouraged to read the discussion thread if they wish to see all of the alternatives.  The thread includes abundant discusison of the pros and cons of many naming ideas.
+The discussion thread for this proposal includes abundant bike shedding on the names.  This section includes selected examples to highlight different directions that have been discussed.  Reviewers are encouraged to read the discussion thread if they wish to see all of the alternatives.  The thread includes abundant discussion of the pros and cons of many naming ideas.
 
 Some of the names that have been suggested have been inaccurate due to a misunderstanding of what the protocols do.  Dave Abrahams explained during the discussion:
 

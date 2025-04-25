@@ -1,12 +1,12 @@
 # String Revision: Collection Conformance, C Interop, Transcoding
 
 * Proposal: [SE-0163](0163-string-revision-1.md)
-* Authors: [Ben Cohen](https://github.com/airspeedswift), [Dave Abrahams](http://github.com/dabrahams/)
+* Authors: [Ben Cohen](https://github.com/airspeedswift), [Dave Abrahams](https://github.com/dabrahams/)
 * Review Manager: [John McCall](https://github.com/rjmccall)
-* Status: **Accepted**
+* Status: **Implemented (Swift 4.0)**
 * Revision: 2
-* Previous Revision: [1](https://github.com/apple/swift-evolution/blob/7513547ddac66b06770a1fd620aad915d75987ff/proposals/0163-string-revision-1.md)
-* Decision Notes: [Rationale #1](https://lists.swift.org/pipermail/swift-evolution/Week-of-Mon-20170417/035919.html), [Rationale #2](https://lists.swift.org/pipermail/swift-evolution/Week-of-Mon-20170515/036728.html)
+* Previous Revision: [1](https://github.com/swiftlang/swift-evolution/blob/7513547ddac66b06770a1fd620aad915d75987ff/proposals/0163-string-revision-1.md)
+* Decision Notes: [Rationale #1](https://forums.swift.org/t/accepted-se-0163-string-revision-collection-conformance-c-interop-transcoding/5716/2), [Rationale #2](https://forums.swift.org/t/accepted-se-0163-string-revision-collection-conformance-c-interop-transcoding/5952)
 
 ## Introduction
 
@@ -70,7 +70,7 @@ Aside from minor differences, such as having a `SubSequence` of `Self`
 and a larger size to describe the range of the subsequence,
 `Substring` will be near-identical from a user perspective.
 
-In order to be able to write extensions accross both `String` and
+In order to be able to write extensions across both `String` and
 `Substring`, a new `StringProtocol` protocol to which the two types
 will conform will be introduced. For the purposes of this proposal,
 `StringProtocol` will be defined as a protocol to be used whenever you
@@ -442,7 +442,7 @@ determined, but are not adversely affected by this proposal.
 ## Alternatives considered
 
 For a more in-depth discussion of some of the trade-offs in string design, see
-the manifesto and associated [evolution thread](https://lists.swift.org/pipermail/swift-evolution/Week-of-Mon-20170116/thread.html#30497).
+the manifesto and associated [evolution thread](https://forums.swift.org/t/strings-in-swift-4/4939).
 
 This proposal does not yet introduce an implicit conversion from `Substring` to
 `String`. The decision on whether to add this will be deferred pending feedback

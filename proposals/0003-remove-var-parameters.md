@@ -1,11 +1,11 @@
 # Removing `var` from Function Parameters
 
 * Proposal: [SE-0003](0003-remove-var-parameters.md)
-* Author: [David Farler](https://github.com/bitjammer)
+* Author: [Ashley Garland](https://github.com/bitjammer)
 * Review Manager: [Joe Pamer](https://github.com/jopamer)
-* Status: **Implemented (Swift 3)**
-* Decision Notes: [Rationale](https://lists.swift.org/pipermail/swift-evolution/Week-of-Mon-20160125/008145.html)
-* Commit: [apple/swift@8a5ed40](https://github.com/apple/swift/commit/8a5ed405bf1f92ec3fc97fa46e52528d2e8d67d9)
+* Status: **Implemented (Swift 3.0)**
+* Decision Notes: [Rationale](https://forums.swift.org/t/se-0003-removing-var-from-function-parameters-and-pattern-matching/1230)
+* Implementation: [apple/swift@8a5ed40](https://github.com/apple/swift/commit/8a5ed405bf1f92ec3fc97fa46e52528d2e8d67d9)
 
 ## Note
 
@@ -97,16 +97,16 @@ this language change.
 This proposal originally included removal of `var` bindings for all
 refutable patterns as well as function parameters.
 
-[Original SE-0003 Proposal](https://github.com/apple/swift-evolution/blob/8cd734260bc60d6d49dbfb48de5632e63bf200cc/proposals/0003-remove-var-parameters-patterns.md)
+[Original SE-0003 Proposal](https://github.com/swiftlang/swift-evolution/blob/8cd734260bc60d6d49dbfb48de5632e63bf200cc/proposals/0003-remove-var-parameters-patterns.md)
 
 Removal of `var` from refutable patterns was reconsidered due to the
 burden it placed on valid mutation patterns already in use in Swift 2
 code. You can view the discussion on the swift-evolution mailing list
 here:
 
-[Initial Discussion of Reconsideration](https://lists.swift.org/pipermail/swift-evolution/Week-of-Mon-20160118/007326.html)
+[Initial Discussion of Reconsideration](https://forums.swift.org/t/reconsidering-se-0003-removing-var-from-function-parameters-and-pattern-matching/1159)
 
 The rationale for a final conclusion was also sent to the
 swift-evolution list, which you can view here:
 
-[Note on Revision of the Proposal](https://lists.swift.org/pipermail/swift-evolution/Week-of-Mon-20160125/008145.html)
+[Note on Revision of the Proposal](https://forums.swift.org/t/se-0003-removing-var-from-function-parameters-and-pattern-matching/1230)

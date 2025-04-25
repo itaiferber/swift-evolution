@@ -3,8 +3,8 @@
 * Proposal: [SE-0148](0148-generic-subscripts.md)
 * Author: [Chris Eidhof](https://github.com/chriseidhof)
 * Review Manager: [Doug Gregor](https://github.com/DougGregor)
-* Status: **Implemented (Swift 4)**
-* Decision Notes: [Rationale](https://lists.swift.org/pipermail/swift-evolution/Week-of-Mon-20170123/031048.html)
+* Status: **Implemented (Swift 4.0)**
+* Decision Notes: [Rationale](https://forums.swift.org/t/accepted-se-0148-generic-subscripts/5017)
 * Bug: [SR-115](https://bugs.swift.org/browse/SR-115)
 
 ## Introduction
@@ -29,7 +29,7 @@ extension JSON {
 }
 ```
 
-Swift-evolution thread: [Generic Subscripts](https://lists.swift.org/pipermail/swift-evolution/Week-of-Mon-20170109/030064.html).
+Swift-evolution thread: [Generic Subscripts](https://forums.swift.org/t/generic-subscripts/4858).
 
 ## Motivation
 
@@ -38,7 +38,7 @@ Currently, subscripts can't be generic. This is limiting in a number of ways:
 - Some subscripts are very specific and could be made more generic.
 - Some generic methods would feel more natural as a subscript, but currently can't be. This also makes it impossible to use them as lvalues.
 
-This feature is also mentioned in the generics manifesto under [generic subscripts](https://github.com/apple/swift/blob/master/docs/GenericsManifesto.md#generic-subscripts). The [Rationalizing Sequence end-operation names](https://github.com/apple/swift-evolution/blob/master/proposals/0132-sequence-end-ops.md) proposal could greatly benefit from this, as well as the ideas in the [String Manifesto](https://github.com/apple/swift/blob/master/docs/StringManifesto.md).
+This feature is also mentioned in the generics manifesto under [generic subscripts](https://github.com/apple/swift/blob/master/docs/GenericsManifesto.md#generic-subscripts). The [Rationalizing Sequence end-operation names](https://github.com/swiftlang/swift-evolution/blob/master/proposals/0132-sequence-end-ops.md) proposal could greatly benefit from this, as well as the ideas in the [String Manifesto](https://github.com/apple/swift/blob/master/docs/StringManifesto.md).
 
 ## Proposed solution
 
@@ -64,7 +64,7 @@ Adding default arguments would unify the compiler's handling of subscripts and f
 
 ## Source compatibility
 
-This is a purely additive change. We don't propose changing the Standard Library to use this new feature, that should be part of a separate proposal. (Likewise, we should consider making subscripts `throws` in a [separate proposal](https://github.com/brentdax/swift-evolution/blob/throwing-properties/proposals/0000-throwing-properties.md)).
+This is a purely additive change. We don't propose changing the Standard Library to use this new feature, that should be part of a separate proposal. (Likewise, we should consider making subscripts `throws` in a [separate proposal](https://github.com/beccadax/swift-evolution/blob/throwing-properties/proposals/0000-throwing-properties.md)).
 
 ## Effect on ABI stability
 

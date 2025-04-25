@@ -2,10 +2,10 @@
 
 * Proposal: [SE-0128](0128-unicodescalar-failable-initializer.md)
 * Author: [Xin Tong](https://github.com/trentxintong)
-* Review Manager: [Chris Lattner](http://github.com/lattner)
-* Status: **Implemented (Swift 3)**
-* Decision Notes: [Rationale](https://lists.swift.org/pipermail/swift-evolution-announce/2016-July/000259.html)
-* Pull Request: [apple/swift#3662](https://github.com/apple/swift/pull/3662)
+* Review Manager: [Chris Lattner](https://github.com/lattner)
+* Status: **Implemented (Swift 3.0)**
+* Decision Notes: [Rationale](https://forums.swift.org/t/accepted-se-0128-change-failable-unicodescalar-initializers-to-failable/3546)
+* Implementation: [apple/swift#3662](https://github.com/apple/swift/pull/3662)
 
 ## Introduction
 

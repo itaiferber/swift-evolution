@@ -3,8 +3,8 @@
 * Proposal: [SE-0170](0170-nsnumber_bridge.md)
 * Author: [Philippe Hausler](https://github.com/phausler)
 * Review Manager: [Ben Cohen](https://github.com/airspeedswift)
-* Status: **Implemented (Swift 4)**
-* Decision Notes: [Rationale](https://lists.swift.org/pipermail/swift-evolution/Week-of-Mon-20170424/036226.html)
+* Status: **Implemented (Swift 4.0)**
+* Decision Notes: [Rationale](https://forums.swift.org/t/accepted-se-0170-nsnumber-bridging-and-numeric-types/5801)
 
 ##### Revision history
 
@@ -84,7 +84,7 @@ let payload = JSONSerialization.jsonObject(with: response, options: []) as? [Str
 
 #### Example 6
 ```swift
-let itDoesntDoWhatYouThinkItDoes = Int8(NSNumber(value: Int64.max)) // counterintutively (as legacy baggage of C) this is Int8(-1)
+let itDoesntDoWhatYouThinkItDoes = Int8(NSNumber(value: Int64.max)) // counterintuitively (as legacy baggage of C) this is Int8(-1)
 ```
 
 All of these examples boil down to the simple question: what does `as?` mean for NSNumber. It is worth noting that `is` should follow the same logic as `as?`.

@@ -1,11 +1,11 @@
 # Package Manager C/C++ Language Standard Support
 
 * Proposal: [SE-0181](0181-package-manager-cpp-language-version.md)
-* Authors: [Ankit Aggarwal](https://github.com/aciidb0mb3r)
+* Author: [Ankit Aggarwal](https://github.com/aciidb0mb3r)
 * Review Manager: [Daniel Dunbar](https://github.com/ddunbar)
-* Status: **Implemented (Swift 4)**
-* Decision Notes: [Rationale](https://lists.swift.org/pipermail/swift-evolution/Week-of-Mon-20170717/038142.html)
-* Pull Request: [apple/swift-package-manager#1264](https://github.com/apple/swift-package-manager/pull/1264)
+* Status: **Implemented (Swift 4.0)**
+* Decision Notes: [Rationale](https://forums.swift.org/t/accepted-with-revision-se-0181-package-manager-c-c-language-standard-support/6353)
+* Implementation: [apple/swift-package-manager#1264](https://github.com/apple/swift-package-manager/pull/1264)
 
 ## Introduction
 
@@ -33,7 +33,7 @@ let package = Package(
 ```
 
 These settings will apply to all the C and C++ targets in the package. The
-default value of these properties will be `nil`, i.e. language standard flag
+default value of these properties will be `nil`, i.e., a language standard flag
 will not be passed when invoking the C/C++ compiler.
 
 _Once we get the build settings feature, we will deprecate these properties._

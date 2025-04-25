@@ -1,10 +1,10 @@
 # Add a `macOS` Alias for the `OSX` Platform Configuration Test
 
 * Proposal: [SE-0106](0106-rename-osx-to-macos.md)
-* Author: [Erica Sadun](http://github.com/erica)
-* Review Manager: [Chris Lattner](http://github.com/lattner)
-* Status: **Implemented (Swift 3)**
-* Decision Notes: [Rationale](https://lists.swift.org/pipermail/swift-evolution-announce/2016-June/000193.html)
+* Author: [Erica Sadun](https://github.com/erica)
+* Review Manager: [Chris Lattner](https://github.com/lattner)
+* Status: **Implemented (Swift 3.0)**
+* Decision Notes: [Rationale](https://forums.swift.org/t/accepted-se-0106-add-a-macos-alias-for-the-osx-platform-configuration-test/3176)
 * Bugs: [SR-1823](https://bugs.swift.org/browse/SR-1823),
         [SR-1887](https://bugs.swift.org/browse/SR-1887)
 
@@ -14,7 +14,7 @@ Starting in Sierra, Apple's Mac-based OS (OS X) will be renamed "macOS". All use
 
 This proposal adds the `#if os(macOS)` platform configuration test to alias the current `#if os(OSX)`
 
-Swift Evolution Discussion: [\[DRAFT\] Aliasing the OS X Platform Configuration	Test](https://lists.swift.org/pipermail/swift-evolution/Week-of-Mon-20160613/021239.html)
+Swift Evolution Discussion: [\[DRAFT\] Aliasing the OS X Platform Configuration	Test](https://forums.swift.org/t/draft-aliasing-the-os-x-platform-configuration-test/2999)
 
 ## Motivation
 
@@ -73,7 +73,7 @@ This proposal is purely additive. It will not affect existing code other than ad
 
 Instead of retaining and aliasing `os(OSX)`, it can be fully replaced by `os(macOS)`. This mirrors the situation with the phoneOS to iOS rename and would require a migration assistant to fixit old-style use. 
 
-Charlie Monroe points out: "Since Swift 3.0 is a code-breaking change my guess is that there is no burden if the Xcode migration assistent automatically changes all `#if os(OSX)` to `#if os(macOS)`, thus deprecating the term OSX, not burdening the developer at all. If iOS was renamed to phoneOS and kept versioning, you'd still expect `#if os(iOS)` to be matched when targeting phoneOS and vice-versa."
+Charlie Monroe points out: "Since Swift 3.0 is a code-breaking change my guess is that there is no burden if the Xcode migration assistant automatically changes all `#if os(OSX)` to `#if os(macOS)`, thus deprecating the term OSX, not burdening the developer at all. If iOS was renamed to phoneOS and kept versioning, you'd still expect `#if os(iOS)` to be matched when targeting phoneOS and vice-versa."
 
 ## Unaddressed Issues
 

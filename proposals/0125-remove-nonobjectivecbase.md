@@ -2,9 +2,9 @@
 
 * Proposal: [SE-0125](0125-remove-nonobjectivecbase.md)
 * Author: [Arnold Schwaighofer](https://github.com/aschwaighofer)
-* Review Manager: [Chris Lattner](http://github.com/lattner)
-* Status: **Implemented (Swift 3)**
-* Decision Notes: [Rationale](https://lists.swift.org/pipermail/swift-evolution-announce/2016-July/000261.html)
+* Review Manager: [Chris Lattner](https://github.com/lattner)
+* Status: **Implemented (Swift 3.0)**
+* Decision Notes: [Rationale](https://forums.swift.org/t/accepted-se-0125-remove-nonobjectivecbase-and-isuniquelyreferenced/3548)
 * Bug: [SR-1962](http://bugs.swift.org/browse/SR-1962)
 
 ## Introduction
@@ -15,14 +15,14 @@ Remove `NonObjectiveCBase` and
 `isUniquelyReferencedNonObjC<T: AnyObject>(_ object: T)`. This
 replacement is as performant as the call to `isUniquelyReferenced` in cases
 where the compiler has static knowledge that the type of `object` is a native
-Swift class and dyamically has the same semantics for native swift classes.
+Swift class and dynamically has the same semantics for native swift classes.
 This change will remove surface API.
 Rename `isUniquelyReferencedNonObjC` to `isKnownUniquelyReferenced` and no
 longer promise to return false for `@objc` class instances.
 Cleanup the `ManagedBufferPointer` API by renaming `holdsUniqueReference` to
 `isUniqueReference` and removing `holdsUniqueOrPinnedReference`.
 
-- Swift-evolution thread: [Review](https://lists.swift.org/pipermail/swift-evolution/Week-of-Mon-20160718/024806.html)
+- Swift-evolution thread: [Review](https://forums.swift.org/t/review-se-0125-remove-nonobjectivecbase-and-isuniquelyreferenced/3462)
 - Branch with change to stdlib: [remove_nonobjectivecbase_2]
   (https://github.com/aschwaighofer/swift/commits/remove_nonobjectivecbase_2)
 

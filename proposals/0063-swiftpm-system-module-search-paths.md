@@ -3,9 +3,9 @@
 * Proposal: [SE-0063](0063-swiftpm-system-module-search-paths.md)
 * Author: [Max Howell](https://github.com/mxcl)
 * Review Manager: [Anders Bertelrud](https://github.com/abertelrud)
-* Status: **Implemented (Swift 3)**
-* Decision Notes: [Rationale](https://lists.swift.org/pipermail/swift-evolution-announce/2016-April/000103.html)
-* Pull Request: [apple/swift-package-manager#257](https://github.com/apple/swift-package-manager/pull/257)
+* Status: **Implemented (Swift 3.0)**
+* Decision Notes: [Rationale](https://forums.swift.org/t/accepted-se-0063-swiftpm-system-module-search-paths/2218)
+* Implementation: [apple/swift-package-manager#257](https://github.com/apple/swift-package-manager/pull/257)
 
 ## Introduction
 
@@ -17,7 +17,7 @@ The current system for using these module-map files with SwiftPM works, but with
 a number of caveats that must be addressed.
 
 
-[swift-evolution thread](https://lists.swift.org/pipermail/swift-evolution/Week-of-Mon-20160321/013201.html)
+[swift-evolution thread](https://forums.swift.org/t/draft-proposal-swiftpm-system-module-search-paths/1914)
 
 
 ## Terminology
@@ -133,7 +133,7 @@ parameters, they can be added on a per enum basis.
 
 #### Install-names are not standard
 
-`apt` is used across multiple distirbutions and the install-names for
+`apt` is used across multiple distributions and the install-names for
 tools vary. Even for the same distribution install-names may vary
 across releases (eg. from Ubuntu 15.04 to Ubuntu 15.10) or even on
 occasion at finer granularity.

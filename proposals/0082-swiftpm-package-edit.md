@@ -4,7 +4,7 @@
 * Author: [Daniel Dunbar](https://github.com/ddunbar)
 * Review Manager: [Anders Bertelrud](https://github.com/abertelrud)
 * Status: **Implemented (Swift 3.1)**
-* Decision Notes: [Rationale](https://lists.swift.org/pipermail/swift-evolution/Week-of-Mon-20160509/017038.html)
+* Decision Notes: [Rationale](https://forums.swift.org/t/accepted-se-0082-package-manager-editable-packages/2540)
 
 ## Introduction
 
@@ -15,9 +15,9 @@ those sources, and add a new feature for allowing iterative development. These
 features are tightly interrelated, which is why they are combined into one
 proposal.
 
-[Proposal Announcement](https://lists.swift.org/pipermail/swift-evolution/Week-of-Mon-20160425/015686.html)
+[Proposal Announcement](https://forums.swift.org/t/rfc-swift-package-manager-editable-packages-proposal/2333)
 
-[Review announcement](https://lists.swift.org/pipermail/swift-evolution/Week-of-Mon-20160502/016502.html)
+[Review announcement](https://forums.swift.org/t/review-se-0082-package-manager-editable-packages/2450)
 
 
 ## Motivation
@@ -70,7 +70,7 @@ intended user action with the current contents of the tree.
 
 Our proposed solution is as follows:
 
-1. Move the default location for checked depencency sources to be "hidden" (an
+1. Move the default location for checked dependency sources to be "hidden" (an
    implementation detail). The package manager build system will by default try
    to ensure that any normal build always runs against the exact sources
    specified by the tag which was selected by dependency resolution.
@@ -86,14 +86,14 @@ Our proposed solution is as follows:
    are present.
 
    When an editable package is present, it will be used to satisfy all instances
-   of that Package in the depencency graph. It should be possible to edit all,
+   of that Package in the dependency graph. It should be possible to edit all,
    some, or none of the packages in a dependency graph, without restriction.
 
 This solution is intended to directly address the desired behaviors of the
 package manager:
 
 * By hiding the sources by default, we minimize the distractions in the common
-  case where a user is programming against a known, well-establised, library
+  case where a user is programming against a known, well-established, library
   they do not need to modify.
 
 * By adding a new, explicit workflow for switching to an "editable" package, we

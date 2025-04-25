@@ -2,9 +2,9 @@
 
 * Proposal: [SE-0144](0144-allow-single-dollar-sign-as-valid-identifier.md)
 * Author: [Ankur Patel](https://github.com/ankurp)
-* Review manager: [Chris Lattner](http://github.com/lattner)
+* Review manager: [Chris Lattner](https://github.com/lattner)
 * Status: **Rejected**
-* Decision Notes: [Rationale](https://lists.swift.org/pipermail/swift-evolution-announce/2016-October/000292.html)
+* Decision Notes: [Rationale](https://forums.swift.org/t/rejected-se-0144-allow-single-dollar-sign-as-a-valid-identifier/4340)
 
 ## Introduction
 

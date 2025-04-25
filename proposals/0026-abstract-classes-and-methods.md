@@ -3,8 +3,8 @@
 * Proposal: [SE-0026](0026-abstract-classes-and-methods.md)
 * Author: David Scrève
 * Review Manager: [Joe Groff](https://github.com/jckarter/)
-* Status: **Deferred**
-* Decision Notes: [Rationale](https://lists.swift.org/pipermail/swift-evolution-announce/2016-March/000056.html)
+* Status: **Rejected**
+* Review: ([pitch](https://forums.swift.org/t/proposal-draff-abstract-classes-and-methods/965)) ([review](https://forums.swift.org/t/review-se-0026-abstract-classes-and-methods/1580)) ([deferral](https://forums.swift.org/t/deferred-se-0026-abstract-classes-and-methods/1705)) ([rejection](https://forums.swift.org/t/returning-or-rejecting-all-the-deferred-evolution-proposals/60724))
 
 ## Introduction
 
@@ -14,11 +14,9 @@ they cannot have attributes as classes have.
 A partial class combines the behavior of a class with the requirement of implementing methods
 in inherited class like protocols.
 
-[Swift-Evolution Discussion](https://lists.swift.org/pipermail/swift-evolution/Week-of-Mon-20160104/005728.html) 
-
 ## Motivation
 
-like pure virtual methods in C++ and abtract classes in Java and C#, frameworks development 
+like pure virtual methods in C++ and abstract classes in Java and C#, frameworks development 
 sometimes required abstract classes facility.
 An abstract class is like a regular class, but some methods/properties are not implemented 
 and must be implemented in one of inherited classes.
@@ -38,7 +36,7 @@ class RESTClient {
     var timeout = 3000
     
     var url : String {
-        assert(false,"Must be overriden")
+        assert(false,"Must be overridden")
         return ""
     }
     
@@ -99,7 +97,7 @@ class MyRestServiceClient : RESTClient {
 ```
 
 ## Detailed design
-An abstract class cannot be instanciated. 
+An abstract class cannot be instantiated. 
 
 Abstract method/property cannot have implementation.
 
@@ -133,8 +131,8 @@ stabilizing in Swift 3.0.
 
 ## Alternatives considered
 As first reading, it seems that protocols and protocol extensions might fit the need. It 
-actually does not because abstract classes can have attributs and properties that 
-protocols does not support.
+actually does not because abstract classes can have attributes and properties that 
+protocols do not support.
 
 An alternative solution would be to add attributes to protocols and protocol extensions, 
 but this might break compatibility with Objective-C runtime.

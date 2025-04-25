@@ -1,14 +1,14 @@
 # Fix Private Access Levels
 
 * Proposal: [SE-0159](0159-fix-private-access-levels.md)
-* Author: [David Hart](http://github.com/hartbit)
+* Author: [David Hart](https://github.com/hartbit)
 * Review Manager: [Doug Gregor](https://github.com/DougGregor)
 * Status: **Rejected**
-* Decision Notes: [Rationale](https://lists.swift.org/pipermail/swift-evolution/Week-of-Mon-20170403/034902.html)
+* Decision Notes: [Rationale](https://forums.swift.org/t/rejected-se-0159-fix-private-access-levels/5576)
 
 ## Introduction
 
-This proposal presents the problems that came with the the access level modifications in [SE-0025](https://github.com/apple/swift-evolution/blob/master/proposals/0025-scoped-access-level.md) and proposes reverting to Swift 2 behaviour.
+This proposal presents the problems that came with the the access level modifications in [SE-0025](https://github.com/swiftlang/swift-evolution/blob/master/proposals/0025-scoped-access-level.md) and proposes reverting to Swift 2 behaviour.
 
 ## Motivation
 
@@ -28,7 +28,7 @@ In Swift 3 compatibility mode, the compiler will continue to treat `private` and
 
 In Swift 4 mode, the compiler will deprecate the `fileprivate` keyword and revert the semantics of the `private` access level to be file based. The migrator will rename all uses of `fileprivate` to `private`.
 
-Cases where a type had `private` declarations with the same signature in different scopes will produce a compiler error. For example, the following piece of code compiles in Swift 3 compatibilty mode but generates a `Invalid redeclaration of 'bar()'` error in Swift 4 mode.
+Cases where a type had `private` declarations with the same signature in different scopes will produce a compiler error. For example, the following piece of code compiles in Swift 3 compatibility mode but generates a `Invalid redeclaration of 'bar()'` error in Swift 4 mode.
 
 ```swift
 struct Foo {

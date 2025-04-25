@@ -4,8 +4,8 @@
 * Author: [Ben Cohen](https://github.com/airspeedswift)
 * Review Manager: [Doug Gregor](https://github.com/DougGregor)
 * Status: **Implemented (Swift 3.1)**
-* Decision Notes: [Rationale](https://lists.swift.org/pipermail/swift-evolution/Week-of-Mon-20170102/029945.html)
-* Pull Request: [apple/swift#6601](https://github.com/apple/swift/pull/6601)
+* Decision Notes: [Rationale](https://forums.swift.org/t/accepted-se-0147-move-unsafemutablepointer-initialize-from-to-unsafemutablebufferpointer/4823)
+* Implementation: [apple/swift#6601](https://github.com/apple/swift/pull/6601)
 
 ## Introduction
 
@@ -54,7 +54,7 @@ Therefore:
 - Over-allocating the destination buffer relative to `underestimatedCount` is valid and simply results in sequence underflow with potentially uninitialized buffer memory (a likely case with arrays that reserve more than they need).
 - The source sequence's actual count may exceed both `underestimatedCount` and the destination buffer size, resulting in sequence overflow. This is also valid and handled by returning an iterator to the uncopied elements as an overflow sequence.
 
-A matching change should also be made to `UnsafeRawBufferPointer.initializeMemory(from:)`. The one difference is that for convenience this should return an `UnsafeMutableBufferPointer` of the (typed) intialized elements instead of an index into the raw buffer.
+A matching change should also be made to `UnsafeRawBufferPointer.initializeMemory(from:)`. The one difference is that for convenience this should return an `UnsafeMutableBufferPointer` of the (typed) initialized elements instead of an index into the raw buffer.
 
 ## Detailed design
 
@@ -153,7 +153,7 @@ public func += <
 
 The addition of the new method does not affect source compatibility. The deprecation of the old method does, but since this is a fundamentally unsound operation that cannot be fixed except via a source-breaking change, it should be aggressively deprecated and then removed.
 
-The knock-on ability to remove the version of `Array.append(contentsOf:)` that takes a collection does not affect source compatability since the version for sequences will be called for collections instead.
+The knock-on ability to remove the version of `Array.append(contentsOf:)` that takes a collection does not affect source compatibility since the version for sequences will be called for collections instead.
 
 ## Effect on ABI stability
 

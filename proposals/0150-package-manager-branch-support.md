@@ -3,8 +3,8 @@
 * Proposal: [SE-0150](0150-package-manager-branch-support.md)
 * Author: [Boris Bügling](https://github.com/neonichu)
 * Review Manager: [Daniel Dunbar](https://github.com/ddunbar)
-* Status: **Implemented (Swift 4)**
-* Decision Notes: [Rationale](https://lists.swift.org/pipermail/swift-evolution/Week-of-Mon-20170130/031428.html)
+* Status: **Implemented (Swift 4.0)**
+* Decision Notes: [Rationale](https://forums.swift.org/t/accepted-se-0150-package-manager-support-for-branches/5074)
 * Bug: [SR-666](https://bugs.swift.org/browse/SR-666)
 
 ## Introduction

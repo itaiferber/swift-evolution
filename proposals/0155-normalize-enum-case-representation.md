@@ -3,10 +3,10 @@
 * Proposal: [SE-0155][]
 * Authors: [Daniel Duan][], [Joe Groff][]
 * Review Manager: [John McCall][]
-* Status: **Accepted with revisions**
-* Decision Notes: [Rationale](https://lists.swift.org/pipermail/swift-evolution/Week-of-Mon-20170417/035972.html)
-* Previous Revision: [1][Revision 1]
-* Bug: [SR-4691](https://bugs.swift.org/browse/SR-4691)
+* Status: **Implemented (Swift 3.0)**
+* Decision Notes: [Rationale][]
+* Previous Revision: [1][Revision 1], [Originally Accepted Proposal][], [Expired Proposal][]
+* Bugs: [SR-4691](https://bugs.swift.org/browse/SR-4691), [SR-12206](https://bugs.swift.org/browse/SR-12206), [SR-12229](https://bugs.swift.org/browse/SR-12229)
 
 ## Introduction
 
@@ -181,61 +181,6 @@ enum Tree {
 }
 ```
 
-### Pattern Consistency
-
-*(The following enum will be used throughout code snippets in this section).*
-
-```swift
-indirect enum Expr {
-    case variable(name: String)
-    case lambda(parameters: [String], body: Expr)
-}
-```
-
-Compared to patterns in Swift 3, matching against enum cases will follow
-stricter rules. This is a consequence of no longer relying on tuple patterns.
-
-When an associated value has a label, the sub-pattern must include the label
-exactly as declared. There are two variants that should look familiar to Swift
-3 users. Variant 1 allows user to bind the associated value to arbitrary name in
-the pattern by requiring the label:
-
-```swift
-case .variable(name: let x) // okay
-case .variable(x: let x) // compile error; there's no label `x`
-case .lambda(parameters: let params, body: let body) // Okay
-case .lambda(params: let params, body: let body) // error: 1st label mismatches
-```
-
-User may choose not to use binding names that differ from labels. In this
-variant, the corresponding value will bind to the label, resulting in this
-shorter form:
-
-```swift
-case .variable(let name) // okay, because the name is the same as the label
-case .lambda(let parameters, let body) // this is okay too, same reason.
-case .variable(let x) // compiler error. label must appear one way or another.
-case .lambda(let params, let body) // compiler error, same reason as above.
-```
-
-Only one of these variants may appear in a single pattern. Swift compiler will
-raise a compile error for mixed usage.
-
-```swift
-case .lambda(parameters: let params, let body) // error, can not mix the two.
-```
-
-Some patterns will no longer match enum cases. For example, all associated
-values can bind as a tuple in Swift 3, this will no longer work after this
-proposal:
-
-```swift
-// deprecated: matching all associated values as a tuple
-if case let .lambda(f) = anLambdaExpr {
-    evaluateLambda(parameters: f.parameters, body: f.body)
-}
-```
-
 ## Source compatibility
 
 Despite a few additions, case declaration remain mostly source-compatible with
@@ -243,12 +188,6 @@ Swift 3, with the exception of the change detailed in "Alternative Payload-less
 Case Declaration".
 
 Syntax for case constructor at use site remain source-compatible.
-
-A large portion of pattern matching syntax for enum cases with associated values
-remain unchanged. But patterns for matching all values as a tuple, patterns that
-elide the label and binds to names that differ from the labels, patterns that
-include labels for some sub-patterns but the rest of them are deprecated by this
-proposal. Therefore this is a source breaking change.
 
 ## Effect on ABI stability and resilience
 
@@ -290,7 +229,9 @@ be introduced with alternative syntax (perhaps related to splats) later without
 source-breakage.  And the need to implement `Equatable` may also disappear with
 auto-deriving for `Equatable` conformance.
 
-The previous revision of this proposal mandated that the labeled form of
+## Revision History
+
+The [first revision of this proposal][Revision 1] mandated that the labeled form of
 sub-pattern (`case .elet(locals: let x, body: let y)`) be the only acceptable
 pattern. Turns out the community considers this to be too verbose in some cases.
 
@@ -298,11 +239,35 @@ A drafted version of this proposal considered allowing "overloaded" declaration
 of enum cases (same full-name, but with associated values with different types).
 We ultimately decided that this feature is out of the scope of this proposal.
 
+The [second revision of this proposal][Originally Accepted Proposal] was accepted with revisions. As originally written, the proposal required that pattern matching against an enum match either by the name of the bound variables, or by explicit labels on the parts of the associated values:
+
+```
+enum Foo {
+  case foo(bar: Int)
+}
+
+func switchFoo(x: Foo) {
+  switch x {
+  case .foo(let bar): // ok
+  case .foo(bar: let bar): // ok
+  case .foo(bar: let bas): // ok
+  case .foo(let bas): // not ok
+  }
+}
+```
+
+However, it was decided in review that this was still too restrictive and
+source-breaking, and so the core team [accepted the proposal][Rationale] with the modification that pattern matches only had to match the case declaration in arity, and case labels could be either provided or elided in their entirety, unless there was an ambiguity. Even then, as of Swift 5.2, this part of the proposal has not been implemented, and it would be a source breaking change to do so. Therefore, the "Pattern Consistency" section of the original proposal has been removed, and replaced with a ["Disambiguating pattern matches" section](https://github.com/swiftlang/swift-evolution/blob/aecced4919ab297f343dafd7235d392d8b859839/proposals/0155-normalize-enum-case-representation.md), which provided a minimal disambiguation rule for pattern matching cases that share a
+base name. This new design still had not been implemented at the time the [core team adopted a new expiration policy for unimplemented proposals](https://forums.swift.org/t/addressing-unimplemented-evolution-proposals/40322), so it has expired.
+
 [SE-0155]: 0155-normalize-enum-case-representation.md
 [SE-0111]: 0111-remove-arg-label-type-significance.md
 [Daniel Duan]: https://github.com/dduan
 [Joe Groff]: https://github.com/jckarter
 [John McCall]: https://github.com/rjmccall
-[TJs comment]: https://lists.swift.org/pipermail/swift-evolution/Week-of-Mon-20170116/030614.html
-[Revision 1]: https://github.com/apple/swift-evolution/blob/43ca098355762014f53e1b54e02d2f6a01253385/proposals/0155-normalize-enum-case-representation.md
-[Normalize Enum Case Representation (rev. 2)]: https://lists.swift.org/pipermail/swift-evolution/Week-of-Mon-20170306/033626.html
+[TJs comment]: https://forums.swift.org/t/draft-compound-names-for-enum-cases/4933/33
+[Revision 1]: https://github.com/swiftlang/swift-evolution/blob/43ca098355762014f53e1b54e02d2f6a01253385/proposals/0155-normalize-enum-case-representation.md
+[Normalize Enum Case Representation (rev. 2)]: https://forums.swift.org/t/normalize-enum-case-representation-rev-2/5395
+[Originally Accepted Proposal]: https://github.com/swiftlang/swift-evolution/blob/4cbb1f1fa836496d4bfba95c4b78a9754690956d/proposals/0155-normalize-enum-case-representation.md
+[Expired Proposal]: https://github.com/swiftlang/swift-evolution/blob/aecced4919ab297f343dafd7235d392d8b859839/proposals/0155-normalize-enum-case-representation.md
+[Rationale]: https://forums.swift.org/t/accepted-se-0155-normalize-enum-case-representation/5732

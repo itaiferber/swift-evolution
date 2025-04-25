@@ -1,11 +1,11 @@
 # Remove implicit tuple splat behavior from function applications
 
 * Proposal: [SE-0029](0029-remove-implicit-tuple-splat.md)
-* Author: [Chris Lattner](http://github.com/lattner)
-* Review Manager: [Joe Groff](http://github.com/jckarter)
-* Status: **Implemented (Swift 3)**
-* Decision Notes: [Rationale](https://lists.swift.org/pipermail/swift-evolution-announce/2016-February/000033.html)
-* Commit: [apple/swift@8e12008](https://github.com/apple/swift/commit/8e12008d2b34a605f8766310f53d5668f3d50955)
+* Author: [Chris Lattner](https://github.com/lattner)
+* Review Manager: [Joe Groff](https://github.com/jckarter)
+* Status: **Implemented (Swift 3.0)**
+* Decision Notes: [Rationale](https://forums.swift.org/t/accepted-se-0029-remove-implicit-tuple-splat-behavior-from-function-applications/1380)
+* Implementation: [apple/swift@8e12008](https://github.com/apple/swift/commit/8e12008d2b34a605f8766310f53d5668f3d50955)
 
 ## Introduction
 
@@ -30,7 +30,7 @@ foo(x)
 
 This proposal recommends removing the later form, which I affectionately refer to as the "tuple splat" form.  This feature is purely a sugar feature, it does not provide any expressive ability beyond passing the parameters manually.
 
-Swift-evolution thread: [Proposal: Remove implicit tuple splat behavior from function applications](https://lists.swift.org/pipermail/swift-evolution/Week-of-Mon-20160125/007856.html)
+Swift-evolution thread: [Proposal: Remove implicit tuple splat behavior from function applications](https://forums.swift.org/t/proposal-remove-implicit-tuple-splat-behavior-from-function-applications/1201)
 
 
 ## Motivation

@@ -2,21 +2,21 @@
 
 * Proposal: [SE-0119](0119-extensions-access-modifiers.md)
 * Author: [Adrian Zubarev](https://github.com/DevAndArtist)
-* Review Manager: [Chris Lattner](http://github.com/lattner)
+* Review Manager: [Chris Lattner](https://github.com/lattner)
 * Status: **Rejected**
-* Decision Notes: [Rationale](https://lists.swift.org/pipermail/swift-evolution-announce/2016-July/000250.html)
+* Decision Notes: [Rationale](https://forums.swift.org/t/rejected-se-0119-remove-access-modifiers-from-extensions/3493)
 
 ## Introduction
 
-<p align="justify">One great goal for Swift 3 is to sort out any source breaking language changes. This proposal aims to fix access modifier inconsistency on extensions compared to other scope declarations types.</p>
+One great goal for Swift 3 is to sort out any source breaking language changes. This proposal aims to fix access modifier inconsistency on extensions compared to other scope declarations types.
 
-Swift-evolution thread: [\[Proposal\] Revising access modifiers on extensions](https://lists.swift.org/pipermail/swift-evolution/Week-of-Mon-20160620/022144.html)
+Swift-evolution thread: [\[Proposal\] Revising access modifiers on extensions](https://forums.swift.org/t/proposal-revising-access-modifiers-on-extensions/3138)
 
 ## Motivation
 
-<p align="justify">The access control of classes, enums and structs in Swift is very easy to learn and memorize. It also disallows to suppress the access modifier of implemented conformance members to lower access modifier if the host type has an access modifier of higher or equal level.</p>
+The access control of classes, enums and structs in Swift is very easy to learn and memorize. It also disallows to suppress the access modifier of implemented conformance members to lower access modifier if the host type has an access modifier of higher or equal level.
 
-<center>`public` > `internal` > `fileprivate` >= `private`</center>
+`public` > `internal` > `fileprivate` >= `private`
 
 ```swift
 public class A {
@@ -56,7 +56,7 @@ This simple access control model also allows us to nest types inside each other 
 
 *Extensions* however behave differently when it comes to their access control:
 
-* The *access modifier* of an *extension* sets the default modifier of its members which do not have their own localy defined modifier.
+* The *access modifier* of an *extension* sets the default modifier of its members which do not have their own locally defined modifier.
 
 	```swift
 	public struct D {}
@@ -150,7 +150,7 @@ I propose to revise the access control on extensions by removing access modifier
 
 > That way, access for members follows the same defaults as in the original type.
 >
-> [Jordan Rose](https://lists.swift.org/pipermail/swift-evolution/Week-of-Mon-20160627/022341.html)
+> [Jordan Rose](https://forums.swift.org/t/proposal-revising-access-modifiers-on-extensions/3138/15)
 
 * It would be possible to conform types to a protocol using an *extension* which has an explicit *access modifier*. The *access modifier* respects the modifier of the extended type and the protocol to which it should be conformed.
 
@@ -234,7 +234,7 @@ I propose to revise the access control on extensions by removing access modifier
 		
 		fileprivate group {
 		
-			// Every group memebr is `fileprivate`
+			// Every group member is `fileprivate`
 			func member1() {}
 			func member2() {}
 			func member3() {}
@@ -243,7 +243,7 @@ I propose to revise the access control on extensions by removing access modifier
 		}
 	}
 	```
-	Such a mechanism could also be used outside extensions! This idea has its own discussion [thread](https://lists.swift.org/pipermail/swift-evolution/Week-of-Mon-20160627/022644.html).
+	Such a mechanism could also be used outside extensions! This idea has its own discussion [thread](https://forums.swift.org/t/post-swift-3-proposal-introducing-group-mechanism/3196).
 
 ## Proposed solution
 
@@ -286,7 +286,7 @@ Iff the *access-level-modifier* is not present, the access modifier on extension
 ```diff
 - extension SomeType : SomeProtocol {
 + public extension SomeType : SomeProtocol {
-	public func someMemeber()
+	public func someMember()
 }
 ```
 

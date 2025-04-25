@@ -1,17 +1,17 @@
 # Class and Subtype existentials
 
 * Proposal: [SE-0156](0156-subclass-existentials.md)
-* Authors: [David Hart](http://github.com/hartbit), [Austin Zheng](http://github.com/austinzheng)
+* Authors: [David Hart](https://github.com/hartbit), [Austin Zheng](https://github.com/austinzheng)
 * Review Manager: [Doug Gregor](https://github.com/DougGregor)
-* Status: **Implemented (Swift 4)**
-* Decision Notes: [Rationale](https://lists.swift.org/pipermail/swift-evolution/Week-of-Mon-20170320/034123.html)
+* Status: **Implemented (Swift 4.0)**
+* Decision Notes: [Rationale](https://forums.swift.org/t/accepted-se-0156-class-and-subtype-existentials/5477)
 * Bug: [SR-4296](https://bugs.swift.org/browse/SR-4296)
 
 ## Introduction
 
 This proposal brings more expressive power to the type system by allowing Swift to represent existentials of classes and subtypes which conform to protocols.
 
-[Mailing list discussion](https://lists.swift.org/pipermail/swift-evolution/Week-of-Mon-20170123/031066.html)
+[Mailing list discussion](https://forums.swift.org/t/subclass-existentials/5024)
 
 ## Motivation
 
@@ -167,7 +167,7 @@ class E : C, CP1 {} // Valid: the inheritance is explicitly declared
 
 ## Source compatibility
 
-This change will not break Swift 3 compability mode because Objective-C types will continue to be imported as before. But in Swift 4 mode, all types bridged from Objective-C which use the equivalent Objective-C existential syntax could break code which does not meet the new protocol requirements. For example, the following Objective-C code:
+This change will not break Swift 3 compatibility mode because Objective-C types will continue to be imported as before. But in Swift 4 mode, all types bridged from Objective-C which use the equivalent Objective-C existential syntax could break code which does not meet the new protocol requirements. For example, the following Objective-C code:
 
 ```objc
 @interface MyViewController
@@ -190,7 +190,7 @@ let myViewController = MyViewController()
 myViewController.setup(UIViewController())
 ```
 
-The previous code continues to compile but still crashs if the Objective-C code calls a method of `UITableViewDataSource` or `UITableViewDelegate`. But if this proposal is accepted and implemented as-is, the Objective-C code will be imported in Swift 4 mode as:
+The previous code continues to compile but still crashes if the Objective-C code calls a method of `UITableViewDataSource` or `UITableViewDelegate`. But if this proposal is accepted and implemented as-is, the Objective-C code will be imported in Swift 4 mode as:
 
 ```swift
 class MyViewController {
@@ -205,7 +205,7 @@ That would then cause the Swift code run in version 4 mode to fail to compile wi
 An alternative solution to the `class`/`AnyObject` duplication was to keep both, redefine `AnyObject` as `typealias AnyObject = class` and favor the latter when used as a type name.
 
 The [reviewed version of the
-proposal](https://github.com/apple/swift-evolution/blob/78da25ec4acdc49ad9b68fb58300e49c33bc6355/proposals/0156-subclass-existentials.md)
+proposal](https://github.com/swiftlang/swift-evolution/blob/78da25ec4acdc49ad9b68fb58300e49c33bc6355/proposals/0156-subclass-existentials.md)
 included rules that required the class type (or `AnyObject`) to be
 first within the protocol composition, e.g., `AnyObject & Protocol1`
 was well-formed but `Protocol1 & AnyObject` would produce a compiler
@@ -214,4 +214,4 @@ rules; see the decision notes at the top for more information.
 
 ## Acknowledgements
 
-Thanks to [Austin Zheng](http://github.com/austinzheng) and [Matthew Johnson](https://github.com/anandabits) who brought a lot of attention to existentials in this mailing-list and from whom most of the ideas in the proposal come from.
+Thanks to [Austin Zheng](https://github.com/austinzheng) and [Matthew Johnson](https://github.com/anandabits) who brought a lot of attention to existentials in this mailing-list and from whom most of the ideas in the proposal come from.

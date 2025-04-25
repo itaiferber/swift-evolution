@@ -3,8 +3,8 @@
 * Proposal: [SE-0171](0171-reduce-with-inout.md)
 * Author: [Chris Eidhof](https://github.com/chriseidhof)
 * Review Manager: [Ben Cohen](https://github.com/airspeedswift)
-* Status: **Accepted**
-* Decision Notes: [Rationale](https://lists.swift.org/pipermail/swift-evolution/Week-of-Mon-20170424/036126.html)
+* Status: **Implemented (Swift 4.0)**
+* Decision Notes: [Rationale](https://forums.swift.org/t/accepted-se-0171-reduce-with-inout/5769)
 
 ## Introduction
 
@@ -22,7 +22,7 @@ extension Sequence {
 }
 ```
 
-Swift-evolution thread: [Reduce with inout](https://lists.swift.org/pipermail/swift-evolution/Week-of-Mon-20170116/030300.html)
+Swift-evolution thread: [Reduce with inout](https://forums.swift.org/t/reduce-with-inout/4897)
 
 ## Motivation
 
@@ -78,7 +78,7 @@ Without the `inout` parameter, we'd first have to make a `var` copy of the exist
 
 ## Source compatibility
 
-This is purely additive, we don't propose removing the existing `reduce`. Additionaly, because the first argument will have a label `into`, it doesn't add any extra burden to the type checker.
+This is purely additive, we don't propose removing the existing `reduce`. Additionally, because the first argument will have a label `into`, it doesn't add any extra burden to the type checker.
 
 ## Effect on ABI stability
 
@@ -94,4 +94,4 @@ We considered removing the existing `reduce`, but the problem with that is two-f
 
 There has been a really active discussion about the naming of the first parameter. Naming it `mutating:` could deceive people into thinking that the value would get mutated in place. Naming it `mutatingCopyOf:` is also tricky: even though a copy of the struct gets mutated, copying is always implicit when using structs, and it wouldn't copy an instance of a class. `into:` seems the best name so far.
 
-Under active discussion: the naming of this method. See the [swift-evolution thread](https://lists.swift.org/pipermail/swift-evolution/Week-of-Mon-20170116/030300).
+Under active discussion: the naming of this method. See the [swift-evolution thread](https://forums.swift.org/t/reduce-with-inout/4897).

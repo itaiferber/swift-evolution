@@ -2,13 +2,13 @@
 
 * Proposal: [SE-0107](0107-unsaferawpointer.md)
 * Author: [Andrew Trick](https://github.com/atrick)
-* Review Manager: [Chris Lattner](http://github.com/lattner)
-* Status: **Implemented (Swift 3)**
-* Decision Notes: [Rationale](https://lists.swift.org/pipermail/swift-evolution-announce/2016-July/000231.html)
+* Review Manager: [Chris Lattner](https://github.com/lattner)
+* Status: **Implemented (Swift 3.0)**
+* Decision Notes: [Rationale](https://forums.swift.org/t/accepted-se-0107-unsaferawpointer-api/3389)
 
 For detailed instructions on how to migrate your code to this new
 Swift 3 API refer to the
-[UnsafeRawPointer Migration Guide](https://swift.org/migration-guide/se-0107-migrate.html). See
+[UnsafeRawPointer Migration Guide](https://swift.org/migration-guide-swift3/se-0107-migrate.html). See
 also: See `bindMemory(to:capacity:)`, `assumingMemoryBound(to:)`, and
 `withMemoryRebound(to:capacity:)`.
 
@@ -95,14 +95,11 @@ This proposal aims to achieve several goals in one coherent design:
 
 Swift-evolution threads:
 
-- [\[RFC\] UnsafeBytePointer API for In-Memory Layout](https://lists.swift.org/pipermail/swift-evolution/Week-of-Mon-20160509/thread.html#16909)
+- [\[RFC\] UnsafeBytePointer API for In-Memory Layout](https://forums.swift.org/t/rfc-unsafebytepointer-api-for-in-memory-layout/2526)
 
-- [\[RFC\] UnsafeBytePointer API for In-Memory Layout (Round 2)](https://lists.swift.org/pipermail/swift-evolution/Week-of-Mon-20160516/thread.html#18156)
+- [\[RFC\] UnsafeBytePointer API for In-Memory Layout (Round 2)](https://forums.swift.org/t/rfc-unsafebytepointer-api-for-in-memory-layout/2526/7)
 
-- [RFC] UnsafeRawPointer API (Round 3)
-  - [Week #1](https://lists.swift.org/pipermail/swift-evolution/Week-of-Mon-20160620/thread.html#22005)
-  - [Week #2](https://lists.swift.org/pipermail/swift-evolution/Week-of-Mon-20160627/thread.html#22230)
-  - [Week #3](https://lists.swift.org/pipermail/swift-evolution/Week-of-Mon-20160704/thread.html#23384)
+- [\[RFC\] UnsafeRawPointer API (Round 3)](https://forums.swift.org/t/draft-unsaferawpointer-api/3123)
 
 [1]:https://github.com/atrick/swift/blob/type-safe-mem-docs/docs/TypeSafeMemory.rst
 
@@ -163,7 +160,7 @@ value argument could result in miscompilation if the inferred type
 ever deviates from the user's original expectations. The type
 parameter also importantly conveys that the raw memory becomes
 accessible via a pointer to that type at the point of the call. The
-type should be explicitly spelled at this point because accesing the
+type should be explicitly spelled at this point because accessing the
 memory via a typed pointer of an unrelated type could also result in
 miscompilation.
 
@@ -738,7 +735,7 @@ func stringFromBytes(size: Int, value: UInt8) {
   bytes.initialize(to: value, count: size)
   bytes[size] = 0
 
-  // Unsafe pointer conversion is requred to invoke readCString.
+  // Unsafe pointer conversion is required to invoke readCString.
   // If readCString is inlineable and compiled with strict aliasing,
   // then it could read uninitialized memory.
   readCStr(UnsafePointer(bytes))
@@ -1771,7 +1768,7 @@ to build the standard library with the changes:
 - The type system handles implicit conversions to UnsafeRawPointer.
 
 - `UnsafeRawPointer` replaces both `UnsafePointer<Void>` and
-  `UnsafeMutablePointer<Void>` (Recent feedback suggestes that
+  `UnsafeMutablePointer<Void>` (Recent feedback suggests that
   `UnsafeMutablePointer` should also be introduced).
 
 - The standard library was relying on inferred `UnsafePointer`

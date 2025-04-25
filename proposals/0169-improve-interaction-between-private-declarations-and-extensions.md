@@ -1,10 +1,10 @@
 # Improve Interaction Between `private` Declarations and Extensions
 
 * Proposal: [SE-0169](0169-improve-interaction-between-private-declarations-and-extensions.md)
-* Authors: [David Hart](http://github.com/hartbit), [Chris Lattner](https://github.com/lattner)
+* Authors: [David Hart](https://github.com/hartbit), [Chris Lattner](https://github.com/lattner)
 * Review Manager: [Doug Gregor](https://github.com/DougGregor)
-* Status: **Implemented (Swift 4)**
-* Decision Notes: [Rationale](https://lists.swift.org/pipermail/swift-evolution-announce/2017-April/000357.html)
+* Status: **Implemented (Swift 4.0)**
+* Decision Notes: [Rationale](https://forums.swift.org/t/accepted-se-0169-improve-interaction-between-private-declarations-and-extensions/5692)
 * Previous Revision: [1][Revision 1]
 * Bug: [SR-4616](https://bugs.swift.org/browse/SR-4616)
 
@@ -113,7 +113,7 @@ struct Outer {
 
 In Swift 3 compatibility mode, the compiler will continue to treat `private` as before. In Swift 4 mode, the compiler will modify the semantics of `private` to follow the rules of this proposal. No migration will be necessary as this proposal merely broadens the visibility of `private`.
 
-Cases where a type had `private` declarations with the same signature in the same type/extension but in different scopes will produce a compiler error in Swift 4. For example, the following piece of code compiles in Swift 3 compatibilty mode but generates a `Invalid redeclaration of 'bar()'` error in Swift 4 mode:
+Cases where a type had `private` declarations with the same signature in the same type/extension but in different scopes will produce a compiler error in Swift 4. For example, the following piece of code compiles in Swift 3 compatibility mode but generates a `Invalid redeclaration of 'bar()'` error in Swift 4 mode:
 
 ```swift
 struct Foo {
@@ -156,6 +156,6 @@ but broader in other ways (allow access across files) would lead to a more
 confusing and fractured model.
 
 
-[Revision 1]: https://github.com/apple/swift-evolution/blob/e0e04f785dbf5bff138b75e9c47bf94e7db28447/proposals/0169-improve-interaction-between-private-declarations-and-extensions.md
+[Revision 1]: https://github.com/swiftlang/swift-evolution/blob/e0e04f785dbf5bff138b75e9c47bf94e7db28447/proposals/0169-improve-interaction-between-private-declarations-and-extensions.md
 
 

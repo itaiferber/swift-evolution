@@ -1,23 +1,23 @@
 # Adding a Build Configuration Import Test
 
 * Proposal: [SE-0075](0075-import-test.md)
-* Author: [Erica Sadun](http://github.com/erica)
-* Review Manager: [Chris Lattner](http://github.com/lattner)
-* Status: **Accepted**
-* Decision Notes: [Rationale](https://lists.swift.org/pipermail/swift-evolution-announce/2016-May/000159.html)
+* Author: [Erica Sadun](https://github.com/erica)
+* Review Manager: [Chris Lattner](https://github.com/lattner)
+* Status: **Implemented (Swift 4.1)**
+* Decision Notes: [Rationale](https://forums.swift.org/t/accepted-se-0075-adding-a-build-configuration-import-test/2683)
 * Bug: [SR-1560](https://bugs.swift.org/browse/SR-1560)
 
 ## Introduction
 
 Expanding the build configuration suite to test for the ability to import certain 
-modules was [first introduced](https://lists.swift.org/pipermail/swift-evolution/Week-of-Mon-20160215/010693.html)
-on the Swift-Evolution list by Kevin Ballard. Although his initial idea (checking for Darwin
+modules was [first introduced](https://forums.swift.org/t/idea-support-if-os-darwin-as-shorthand-for-os-ios-os-osx-os-watchos-os-tvos/1493)
+on the Swift-Evolution list by Lily Ballard. Although her initial idea (checking for Darwin
 to differentiate Apple targets from non-Apple targets) proved problematic, developers warmly
 greeted the notion of an import-based configuration test. 
 Dmitri Gribenko wrote, "There's a direction that we want to move to a unified name for the libc module for all platform, so 'can import Darwin' might not be a viable long-term strategy." 
 Testing for imports offers advantages that stand apart from this one use-case: to test for API availability before use.
 
-[Swift Evolution Review Thread](https://lists.swift.org/pipermail/swift-evolution/Week-of-Mon-20160509/017044.html)
+[Swift Evolution Review Thread](https://forums.swift.org/t/review-se-0075-adding-a-build-configuration-import-test/2542)
  
 ## Motivation
 
@@ -25,20 +25,20 @@ Swift's existing set of build configurations specify platform differences, not m
 
 ```swift
 #if canImport(UIKit)
-   // UIKit-based code
-   #elseif canImport(Cocoa)
-   // OSX code
-   #elseif
-   // Workaround/text, whatever
+    // UIKit-based code
+#elseif canImport(Cocoa)
+    // OSX code
+#elseif
+    // Workaround/text, whatever
 #endif
 ```
 
-Guarding code with operating system tests can be less future-proofed than testing for module support.  Excluding OS X to use UIColor creates code that might eventually find its way to a Linux plaform. Targeting Apple platforms by inverting a test for Linux essentially broke after the introduction of `Windows` and `FreeBSD` build configurations:
+Guarding code with operating system tests can be less future-proofed than testing for module support.  Excluding OS X to use UIColor creates code that might eventually find its way to a Linux platform. Targeting Apple platforms by inverting a test for Linux essentially broke after the introduction of `Windows` and `FreeBSD` build configurations:
 
 ```swift
 // Exclusive os tests are brittle
 #if !os(Linux)
-   // Matches OSX, iOS, watchOS, tvOS, Windows, FreeBSD
+    // Matches OSX, iOS, watchOS, tvOS, Windows, FreeBSD
 #endif
 ```
 
@@ -73,7 +73,7 @@ frameworks at runtime is to do it via Obj-C. Some sort of check like the ones yo
 
 #if canImport(module)
     // provide solution with module APIs
-    #else
+#else
     // provide alternative solution that does not depend on that module
 #endif
 ```

@@ -3,10 +3,9 @@
 * Proposal: [SE-0166](0166-swift-archival-serialization.md)
 * Authors: [Itai Ferber](https://github.com/itaiferber), [Michael LeHew](https://github.com/mlehew), [Tony Parker](https://github.com/parkera)
 * Review Manager: [Doug Gregor](https://github.com/DougGregor)
-* Status: **Implemented (Swift 4)**
-* Decision Notes: [Rationale](https://lists.swift.org/pipermail/swift-evolution-announce/2017-April/000367.html)
-* Associated PRs:
-  * [#9004](https://github.com/apple/swift/pull/9004)
+* Status: **Implemented (Swift 4.0)**
+* Decision Notes: [Rationale](https://forums.swift.org/t/accepted-se-0166-swift-archival-serialization/5780)
+* Implementation: [apple/swift#9004](https://github.com/apple/swift/pull/9004)
 
 ## Introduction
 

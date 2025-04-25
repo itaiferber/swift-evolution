@@ -1,10 +1,10 @@
 # One-sided Ranges
 
 * Proposal: [SE-0172](0172-one-sided-ranges.md)
-* Authors: [Ben Cohen](https://github.com/airspeedswift), [Dave Abrahams](https://github.com/dabrahams), [Brent Royal-Gordon](https://github.com/brentdax)
+* Authors: [Ben Cohen](https://github.com/airspeedswift), [Dave Abrahams](https://github.com/dabrahams), [Becca Royal-Gordon](https://github.com/beccadax)
 * Review Manager: [Doug Gregor](https://github.com/DougGregor)
-* Status: **Implemented (Swift 4)** 
-* Decision Notes: [Rationale](https://lists.swift.org/pipermail/swift-evolution/Week-of-Mon-20170424/036125.html)
+* Status: **Implemented (Swift 4.0)** 
+* Decision Notes: [Rationale](https://forums.swift.org/t/accepted-se-0172-one-sided-ranges/5768)
 
 ## Introduction
 
@@ -64,14 +64,14 @@ variants of `Sequence.enumerated()` when you either want them non-zero-based
 i.e. `zip(1..., greeting)`, or want to flip the order i.e. `zip(greeting,
 0...)`.
 
-This syntax would supercede the existing `prefix` and `suffix` operations that
+This syntax would supersede the existing `prefix` and `suffix` operations that
 take indices, which will be deprecated in a later release. Note that the
 versions that take distances are not covered by this proposal, and would remain.
 
 This will require the introduction of new range types (e.g.
 `PartialRangeThrough`). There are already multiple range types (e.g.
 `ClosedRange`, `CountableHalfOpenRange`), which require overloads to allow them
-to be used whereever a `Range` can be.
+to be used wherever a `Range` can be.
 
 To unify these different range types, a new protocol, `RangeExpression` will be
 created and all ranges conformed to it. Existing overloads taking concrete
@@ -171,7 +171,7 @@ extension MutableCollection {
    where R.Bound == Index { get set }
 }
   
-extension RangeReplaceableColleciton {
+extension RangeReplaceableCollection {
   public mutating func replaceSubrange<C: Collection, R: RangeExpression>(
     _ subrange: ${Range}<Index>, with newElements: C
   ) where C.Iterator.Element == Iterator.Element, R.Bound == Index

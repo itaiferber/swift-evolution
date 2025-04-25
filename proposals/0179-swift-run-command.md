@@ -1,11 +1,11 @@
 # Swift `run` Command
 
 * Proposal: [SE-0179](0179-swift-run-command.md)
-* Authors: [David Hart](http://github.com/hartbit/)
+* Author: [David Hart](https://github.com/hartbit/)
 * Review Manager: [Daniel Dunbar](https://github.com/ddunbar)
-* Status: **Implemented (Swift 4)**
-* Decision Notes: [Rationale](https://lists.swift.org/pipermail/swift-evolution/Week-of-Mon-20170529/036909.html)
-* Pull Request: [apple/swift-package-manager#1187](https://github.com/apple/swift-package-manager/pull/1187)
+* Status: **Implemented (Swift 4.0)**
+* Decision Notes: [Rationale](https://forums.swift.org/t/accepted-with-revision-se-0179-swift-run-command/6031)
+* Implementation: [apple/swift-package-manager#1187](https://github.com/apple/swift-package-manager/pull/1187)
 
 ## Introduction
 
@@ -22,7 +22,7 @@ $ .build/debug/myexecutable
   
 In Swift 4, the Swift Package Manager will build to a different path, containing a platform sub-folder (`.build/macosx-x86_64/debug` for mac and `.build/linux-x86_64/debug` for linux), making it more cumbersome to run the executable from the command line.
   
-To improve the development workflow, the proposal suggests introducing a new first-level `swift run` command that will build if necessary and then run an executable defined in the `Package.swift` manifest, replacing the above steps into just one.
+To improve the development workflow, the proposal suggests introducing a new first-level `swift run` command that will build if necessary and then run an executable defined in the `Package.swift` manifest, reducing the above steps to just one.
 
 ## Proposed solution
 
